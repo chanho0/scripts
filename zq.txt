@@ -1,7 +1,7 @@
 hostname = ios.baertt.com, kandian.wkandian.com
 
-https:\/\/kandian\.wkandian\.com\/v5\/article\/info\.json url script-request-header https://raw.githubusercontent.com/Sunert/Script/master/Task/Youth_Read.js
+https:\/\/kandian\.wkandian\.com\/v5\/article\/info\.json url script-request-header https://raw.githubusercontent.com/fumeng-p/meng/a3c176839cc7a23c53d897bf1ff708fe30f54b7a/jd/Youth_Read.js
 
-https:\/\/kandian\.wkandian\.com\/v5\/article\/complete\.json url script-request-body https://raw.githubusercontent.com/Sunert/Script/master/Task/Youth_Read.js
+https:\/\/kandian\.wkandian\.com\/v5\/article\/complete\.json url script-request-body https://raw.githubusercontent.com/fumeng-p/meng/a3c176839cc7a23c53d897bf1ff708fe30f54b7a/jd/Youth_Read.js
 
-https:\/\/kandian\.wkandian\.com/v5\/user\/stay\.json url script-request-body https://raw.githubusercontent.com/Sunert/Script/master/Task/Youth_Read.js
+https:\/\/kandian\.wkandian\.com/v5\/user\/stay\.json url script-request-body https://raw.githubusercontent.com/fumeng-p/meng/a3c176839cc7a23c53d897bf1ff708fe30f54b7a/jd/Youth_Read.js
