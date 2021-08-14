@@ -11,7 +11,7 @@ $.authorCodeList = [];
 let cookiesArr = [];
 $.linkID = '';
 let uniqueIdList = [
-    {'id':'L74LC5','name':'肖战','linkID':'P8Iw2eXANcZA4r_ofEDaAQ'}
+    {'id':'L74LC5','name':'肖战','linkID':'P8Iw2eXANcZA4r_ofEDaAQ','taskId':false}
 ];
 if ($.isNode()) {
     Object.keys(jdCookieNode).forEach((item) => {
@@ -62,12 +62,17 @@ if ($.isNode()) {
     for (let i = 0; i < cookiesArr.length; i++) {
         $.cookie = cookiesArr[i];
         $.UserName = decodeURIComponent($.cookie.match(/pt_pin=([^; ]+)(?=;?)/) && $.cookie.match(/pt_pin=([^; ]+)(?=;?)/)[1]);
-        let sar = Math.floor((Math.random() * uniqueIdList.length));
-        $.uniqueId = uniqueIdList[sar].id;
+        $.taskId = false;
+        let sar = 0
+        while (!$.taskId){
+            sar = Math.floor((Math.random() * uniqueIdList.length));
+            $.uniqueId = uniqueIdList[sar].id;
+            $.linkID = uniqueIdList[sar].linkID;
+            $.taskId = uniqueIdList[sar].taskId;
+        }
         for (let k = 0; k < $.inviteCodeList.length; k++) {
             $.oneCode = $.inviteCodeList[k];
             console.log(`${$.UserName}去助力：${$.uniqueId} 活动，助力码：${$.oneCode}`);
-            //await takePostRequest('help');
             await help()
             await $.wait(2000);
         }
@@ -130,7 +135,7 @@ async function main() {
 }
 
 async function help(){
-    const url = `https://api.m.jd.com/?functionId=activityStarBackGetProgressInfo&body={%22starId%22:%22${$.uniqueId}%22,%22sharePin%22:%22${$.oneCode}%22,%22taskId%22:%22230%22,%22linkId%22:%22${$.linkID}%22}&_t=${Date.now()}&appid=activities_platform`;
+    const url = `https://api.m.jd.com/?functionId=activityStarBackGetProgressInfo&body={%22starId%22:%22${$.uniqueId}%22,%22sharePin%22:%22${$.oneCode}%22,%22taskId%22:%22${$.taskId}%22,%22linkId%22:%22${$.linkID}%22}&_t=${Date.now()}&appid=activities_platform`;
     const headers = {
         'Origin' : `https://prodev.m.jd.com`,
         'Cookie': $.cookie,
@@ -287,10 +292,6 @@ async function takePostRequest(type) {
             break;
         case 'apDoTask':
             body = `functionId=apDoTask&body={"taskType":"${$.oneTask.taskType}","taskId":${$.oneTask.id},"uniqueId":"${$.uniqueId}","channel":4,"linkId":"${$.linkID}","itemId":"${encodeURIComponent($.oneItemInfo.itemId)}"}&_t=${Date.now()}&appid=activities_platform`;
-            myRequest = getPostRequest(body);
-            break;
-        case 'help':
-            body = `functionId=activityStarBackGetProgressBarInfo&body={"starId":"${$.uniqueId}","sharePin":"${$.oneCode}","taskId":"129","linkId":"${$.linkID}"}&_t=${Date.now()}&appid=activities_platform`;
             myRequest = getPostRequest(body);
             break;
         case 'activityStarBackDrawPrize':
@@ -462,6 +463,43 @@ function TotalBean() {
                 resolve();
             }
         })
+    })
+}
+function getAuthorShareCode(url) {
+    return new Promise(async resolve => {
+        const options = {
+            "url": `${url}`,
+            "timeout": 10000,
+            "headers": {
+                "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1 Edg/87.0.4280.88"
+            }
+        };
+        if ($.isNode() && process.env.TG_PROXY_HOST && process.env.TG_PROXY_PORT) {
+            const tunnel = require("tunnel");
+            const agent = {
+                https: tunnel.httpsOverHttp({
+                    proxy: {
+                        host: process.env.TG_PROXY_HOST,
+                        port: process.env.TG_PROXY_PORT * 1
+                    }
+                })
+            }
+            Object.assign(options, { agent })
+        }
+        $.get(options, async (err, resp, data) => {
+            try {
+                if (err) {
+                } else {
+                    if (data) data = JSON.parse(data)
+                }
+            } catch (e) {
+                // $.logErr(e, resp)
+            } finally {
+                resolve(data || []);
+            }
+        })
+        await $.wait(10000)
+        resolve();
     })
 }
 /**
