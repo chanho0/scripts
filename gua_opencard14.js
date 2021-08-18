@@ -62,7 +62,7 @@ message = ""
       return
     }
   }
-  $.shareUuid = 'abcd4cabe50f48e6853acde2ebf7fd48'
+  $.shareUuid = 'be7ee6aa14914acc968ceaee5e72966f'
   $.activityId = '8461aaca3fd24c66a3674da99c5342eb'
   console.log(`入口:\nhttps://lzdz1-isv.isvjcloud.com/lzclient/dz/2021jan/eliminateGame/0816eliminate/?activityId=${$.activityId}&shareUuid=${$.shareUuid}`)
   for (let i = 0; i < cookiesArr.length; i++) {

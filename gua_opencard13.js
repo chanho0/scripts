@@ -62,7 +62,7 @@ message = ""
       return
     }
   }
-  $.shareUuid = '016ba2d74d69402c946d0f80af002f54'
+  $.shareUuid = 'f6f76898ff6c49a8a57441d944757d39'
   $.activityId = '375dbaa9e32c4c70bb8357836956ed2e'
   console.log(`入口:\nhttps://lzdz1-isv.isvjcloud.com/dingzhi/dz/openCard/activity/3542672?activityId=${$.activityId}&shareUuid=${$.shareUuid}`)
   for (let i = 0; i < cookiesArr.length; i++) {
