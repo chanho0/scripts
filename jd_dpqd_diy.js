@@ -2,7 +2,7 @@
 店铺签到，各类店铺签到，有新的店铺直接添加token即可
 搬运cui521大佬脚本，请勿外传！！！
 
-jd_babel_diy_zeus
+cron 0 3,23 * * * jd_qpqd_diy.js, tag=店铺签到diy
 */
 const $ = new Env('店铺签到');
 
