@@ -21,7 +21,7 @@ message = ""
         });
         return;
     }
-    $.shareUuid='983829a400c243d08750c60ce2fbff49'
+    $.shareUuid='7f1a50c85aab4f839875e5e244fa4b1c'
     $.activityId = '902082701'
     console.log(`入口:\nhttps://lzdz-isv.isvjcloud.com/dingzhi/union/kxj/activity/?activityId=${$.activityId}&shareUuid=${$.shareUuid}`)
     for (let i = 0; i < cookiesArr.length; i++) {
