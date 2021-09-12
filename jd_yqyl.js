@@ -2,7 +2,7 @@
 /*
 
 
-
+export yqm=""
  #柠檬邀请有礼  
  #自定义邀请码环境变量
 export yqm="你的邀请码"
@@ -10,7 +10,7 @@ export yqm="你的邀请码"
 [task_local]
 0 10 * * * http://nm66.top/jd_yqyl.js, tag=柠檬邀请有礼, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/jd.png, enabled=true
 */
-export yqm="cMEqHxouv1NurBpndcOvoQ%3D%3D"
+
 const $ = new Env('柠檬邀请有礼');
 const notify = $.isNode() ? require('./sendNotify') : '';
 //Node.js用户请在jdCookie.js处填写京东ck;
@@ -18,11 +18,11 @@ const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 
 //IOS等用户直接用NobyDa的jd cookie
 let cookiesArr = [], cookie = '', message;
-let yqm = '';
+let yqm = 'cMEqHxouv1NurBpndcOvoQ%3D%3D';
 let zdtx = false //设置为true自动抢提现100
-if (process.env.yqm) {
-  yqm = process.env.yqm;
-}
+//if (process.env.yqm) {
+//  yqm = process.env.yqm;
+//}
 if (process.env.zdtx) {
   zdtx = process.env.zdtx;
 }
