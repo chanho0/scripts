@@ -8,10 +8,10 @@ const ua = `jdltapp;iPhone;3.1.0;${Math.ceil(Math.random()*4+10)}.${Math.ceil(Ma
 let cookiesArr = []
 let pins = process.env.dyjHelpPins ?? ""
 let cookie = ''
-var helps = []
-var tools = []
+let helps = []
+let tools = []
 
-!(async() => {
+!(async () => {
     await requireConfig()
     if (!cookiesArr[0]) {
         $.msg($.name, '【提示】请先获取京东账号一cookie\n直接使用NobyDa的京东签到获取', 'https://bean.m.jd.com/bean/signIndex.action', {
@@ -19,158 +19,96 @@ var tools = []
         });
         return;
     }
-    if (!pins) {
-        console.log("请设置环境变量dyjHelpPins")
-        return
+    if(!pins){
+         console.log("请设置环境变量dyjHelpPins")
     }
-
-    // for (let k = 0; k < 3; k++) {
-        // helps = []
-        // tools = []
-        for (let i = 0; i < cookiesArr.length; i++) {
+    for (let i = 0; i < cookiesArr.length; i++) {
           cookie = cookiesArr[i];
-          //   pin = cookie.match(/pt_pin=([^; ]+)(?=;?)/) && cookie.match(/pt_pin=([^; ]+)(?=;?)/)[1]
-          //   if (pins && pins.indexOf(pin) != -1) {
-          //       data = await openRedEnvelopeInteract({}, cookie)
-          //       console.log(data)
-          //       if (data?.code == 16020) continue
-          //       data = await redEnvelopeInteractHome()
-          //       redEnvelopeId = data?.data?.redEnvelopeId
-          //       markedPin = data?.data?.markedPin
-          //       amount = data?.data?.amount
-          //       if (markedPin)
-                    
-          //   }
-            tools.push({
-                id: i,
-                cookie: cookie
-            })
-        }
-        helps.push({
-                        id: 1,
-                        redEnvelopeId: "7d6a091806f5425282246f6df7864bd548801628611209172",
-                        markedPin: "WaHpHMRJdh28jqa9WTwWl3LXebXXp5CBbOkCxVi4jTg",
-                        success: false
-         })
-        for (let help of helps) {
-            open(help)
-        }
-    // }
-    await $.wait(30000)
+          pin = cookie.match(/pt_pin=([^; ]+)(?=;?)/) && cookie.match(/pt_pin=([^; ]+)(?=;?)/)[1]
+          if(pins && pins.indexOf(pin)!=-1){
+               data = await openRedEnvelopeInteract({}, cookie)
+               if(data?.code==16020)continue
+               data = await redEnvelopeInteractHome()
+               redEnvelopeId = data?.data?.redEnvelopeId
+               markedPin = data?.data?.markedPin
+               amount = data?.data?.amount
+               helps.push({id: i, redEnvelopeId: redEnvelopeId, markedPin: markedPin})
+          }
+          tools.push({id: i, cookie: cookie})  
+    }
+    while (helps.length && tools.length) {
+          tool = tools.pop()
+          cookie = tool.cookie
+          data = await openRedEnvelopeInteract({redEnvelopeId: helps[0].redEnvelopeId,inviter: helps[0].markedPin, helpType:"1"})
+          errMsg = data?.data?.helpResult?.errMsg
+          if(errMsg){
+                console.log(`${tool.id}->${helps[0].id} ${errMsg}`) 
+                if(errMsg.indexOf("成功提现")!=-1){
+                    console.log(errMsg)
+                    helps.shift()
+                    tools.unshift(tool)
+               }
+          }
+    }
 })()
+function openRedEnvelopeInteract(body = {}) {
+     body.linkId = "yMVR-_QKRd2Mq27xguJG-w"
+     return new Promise(resolve => {
+         $.get({
+             url: "https://api.m.jd.com/?functionId=openRedEnvelopeInteract&body="+JSON.stringify(body)+"&t=" + Date.now() + "&appid=activities_platform&clientVersion=3.5.6",
+             headers: {
+                 'Cookie': cookie,
+                 'Accept': '*/*',
+                 'Connection': 'keep-alive',
+                 'Accept-Encoding': 'gzip, deflate, br',
+                 'User-Agent': ua,
+                 'Accept-Language': 'zh-Hans-CN;q=1',
+                 'Host': 'api.m.jd.com',
+                 'Origin': 'https://wbbny.m.jd.com'
+             },
+         }, (err, resp, data) => {
+             try {
+                 data = JSON.parse(data)
+             } catch (e) {
+                 $.logErr('Error: ', e, resp)
+             } finally {
+                 resolve(data)
+             }
+         })
+     })
+ }
 
-function open(help) {
-    var tool = tools.pop()
-    if (!tool) return
-    if (help.success) return
-    openRedEnvelopeInteract({
-        redEnvelopeId: helps[0].redEnvelopeId,
-        inviter: helps[0].markedPin,
-        helpType: "1"
-    }, tool.cookie).then(function(data) {
-        desc = data?.data?.helpResult?.errMsg
-        if (desc && desc.indexOf("成功提现") != -1) {
-            tools.unshift(tool)
-            help.success = true
-            exchange(help.cookie)
-        } else if (!data) {
-            tools.unshift(tool)
-        }
-        console.log(`${tool.id}->${help.id}`, desc)
-        open(help)
-    })
-}
-
-function openRedEnvelopeInteract(body = {}, cookie) {
-    body.linkId = "yMVR-_QKRd2Mq27xguJG-w"
-    return new Promise(resolve => {
-        $.get({
-            url: "https://api.m.jd.com/?functionId=openRedEnvelopeInteract&body=" + JSON.stringify(body) + "&t=" + Date.now() + "&appid=activities_platform&clientVersion=3.5.6",
-            headers: {
-                'Cookie': cookie,
-                'Accept': '*/*',
-                'Connection': 'keep-alive',
-                'Accept-Encoding': 'gzip, deflate, br',
-                'User-Agent': ua,
-                'Accept-Language': 'zh-Hans-CN;q=1',
-                'Host': 'api.m.jd.com',
-                'Origin': 'https://wbbny.m.jd.com'
-            },
-        }, (err, resp, data) => {
-            try {
-                data = JSON.parse(data)
-            } catch (e) {
-                $.logErr('Error: ', e, resp)
-            } finally {
-                resolve(data)
-            }
-        })
-    })
-}
-
-function redEnvelopeInteractHome() {
-    return new Promise(resolve => {
-        $.get({
-            url: "https://api.m.jd.com/?functionId=redEnvelopeInteractHome&body={%22linkId%22:%22yMVR-_QKRd2Mq27xguJG-w%22,%22redEnvelopeId%22:%22%22,%22inviter%22:%22%22,%22helpType%22:%22%22}&t=" + Date.now() + "&appid=activities_platform&clientVersion=3.5.6",
-            headers: {
-                'Cookie': cookie,
-                'Accept': '*/*',
-                'Connection': 'keep-alive',
-                'Accept-Encoding': 'gzip, deflate, br',
-                'User-Agent': ua,
-                'Accept-Language': 'zh-Hans-CN;q=1',
-                'Host': 'api.m.jd.com',
-                'Origin': 'https://wbbny.m.jd.com'
-            },
-        }, (err, resp, data) => {
-            try {
-                data = JSON.parse(data)
-                    //      if(data.data){
-                    //           console.log(data.data.bizMsg)
-                    //      }
-                    //      if(data.errorMessage){
-                    //         console.log(data.errorMessage)
-                    //    }
-            } catch (e) {
-                $.logErr('Error: ', e, resp)
-            } finally {
-                resolve(data)
-            }
-        })
-    })
-}
-
-function exchange(cookie) {
-    return new Promise(resolve => {
-        $.get({
-            url: `https://api.m.jd.com/?functionId=exchange&body={"linkId":"yMVR-_QKRd2Mq27xguJG-w","rewardType":1}&t=${Date.now()}&appid=activities_platform&clientVersion=3.5.8`,
-            headers: {
-                'Cookie': cookie,
-                'Accept': '*/*',
-                'Connection': 'keep-alive',
-                'Accept-Encoding': 'gzip, deflate, br',
-                'User-Agent': ua,
-                'Accept-Language': 'zh-Hans-CN;q=1',
-                'Host': 'api.m.jd.com',
-                'Origin': 'https://wbbny.m.jd.com'
-            },
-        }, (err, resp, data) => {
-            try {
-                data = JSON.parse(data)
-                    //      if(data.data){
-                    //           console.log(data.data.bizMsg)
-                    //      }
-                    //      if(data.errorMessage){
-                    //         console.log(data.errorMessage)
-                    //    }
-            } catch (e) {
-                $.logErr('Error: ', e, resp)
-            } finally {
-                resolve(data)
-            }
-        })
-    })
-}
+ function redEnvelopeInteractHome() {
+     return new Promise(resolve => {
+         $.get({
+             url: "https://api.m.jd.com/?functionId=redEnvelopeInteractHome&body={%22linkId%22:%22yMVR-_QKRd2Mq27xguJG-w%22,%22redEnvelopeId%22:%22%22,%22inviter%22:%22%22,%22helpType%22:%22%22}&t=" + Date.now() + "&appid=activities_platform&clientVersion=3.5.6",
+             headers: {
+                 'Cookie': cookie,
+                 'Accept': '*/*',
+                 'Connection': 'keep-alive',
+                 'Accept-Encoding': 'gzip, deflate, br',
+                 'User-Agent': ua,
+                 'Accept-Language': 'zh-Hans-CN;q=1',
+                 'Host': 'api.m.jd.com',
+                 'Origin': 'https://wbbny.m.jd.com'
+             },
+         }, (err, resp, data) => {
+             try {
+                 data = JSON.parse(data)
+                 if(data.data){
+                      console.log(data.data.bizMsg)
+                 }
+                 if(data.errorMessage){
+                    console.log(data.errorMessage)
+               }
+             } catch (e) {
+                 $.logErr('Error: ', e, resp)
+             } finally {
+                 resolve(data)
+             }
+         })
+     })
+ } 
 
 function requireConfig() {
     return new Promise(resolve => {
@@ -188,6 +126,51 @@ function requireConfig() {
         }
         console.log(`共${cookiesArr.length}个京东账号\n`)
         resolve()
+    })
+}
+
+function TotalBean() {
+    return new Promise(async resolve => {
+        const options = {
+            "url": `https://wq.jd.com/user/info/QueryJDUserInfo?sceneval=2`,
+            "headers": {
+                "Accept": "application/json,text/plain, */*",
+                "Content-Type": "application/x-www-form-urlencoded",
+                "Accept-Encoding": "gzip, deflate, br",
+                "Accept-Language": "zh-cn",
+                "Connection": "keep-alive",
+                "Cookie": cookie,
+                "Referer": "https://wqs.jd.com/my/jingdou/my.shtml?sceneval=2",
+                "User-Agent": $.isNode() ? (process.env.JD_USER_AGENT ? process.env.JD_USER_AGENT : (require('./USER_AGENTS').USER_AGENT)) : ($.getdata('JDUA') ? $.getdata('JDUA') : "jdapp;iPhone;9.4.4;14.3;network/4g;Mozilla/5.0 (iPhone; CPU iPhone OS 14_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1")
+            }
+        }
+        $.post(options, (err, resp, data) => {
+            try {
+                if (err) {
+                    console.log(`${JSON.stringify(err)}`)
+                    console.log(`${$.name} API请求失败，请检查网路重试`)
+                } else {
+                    if (data) {
+                        data = JSON.parse(data);
+                        if (data['retcode'] === 13) {
+                            $.isLogin = false; //cookie过期
+                            return
+                        }
+                        if (data['retcode'] === 0) {
+                            $.nickName = (data['base'] && data['base'].nickname) || $.UserName;
+                        } else {
+                            $.nickName = $.UserName
+                        }
+                    } else {
+                        console.log(`京东服务器返回空数据`)
+                    }
+                }
+            } catch (e) {
+                $.logErr(e, resp)
+            } finally {
+                resolve();
+            }
+        })
     })
 }
 
