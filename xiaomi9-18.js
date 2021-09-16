@@ -5,7 +5,7 @@ const $ = new Env("小米");
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 const notify = $.isNode() ? require('./sendNotify') : '';
 let cookiesArr = [], cookie = '', message = '';
-let ownCode = ce328b0b63b04758bc6137b8084faebe;
+let ownCode = 'ce328b0b63b04758bc6137b8084faebe';
 if ($.isNode()) {
     Object.keys(jdCookieNode).forEach((item) => {
         cookiesArr.push(jdCookieNode[item])
