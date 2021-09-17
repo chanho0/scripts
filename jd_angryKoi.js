@@ -19,7 +19,7 @@ var tools= []
     requireConfig()
     for (let i in cookiesArr) {
         cookie = cookiesArr[i]
-        var koiss = cookiesArr[0]+'@'+cookiesArr[1]
+        var koiss = cookiesArr[0]//+'@'+cookiesArr[1]
 if(koiss.indexOf(cookie.match(/pt_pin=([^; ]+)(?=;?)/) && cookie.match(/pt_pin=([^; ]+)(?=;?)/)[1])!=-1){
             var data = await requestApi('h5launch',cookie);
             switch (data?.data?.result?.status) {
