@@ -1,12 +1,12 @@
 /*
 
 
-30 0,19 20-30 9 * gua_task920, tag=生活有范, enabled=true
+30 0,19 20-30 9 * gua_task920.js, tag=生活有范, enabled=true
 
 */
 process.env.guaopencard24 = false
 
-const $ = new Env('会员“食”力派');
+const $ = new Env('生活有范');
 const Faker=require('./sign_graphics_validate.js') 
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 
