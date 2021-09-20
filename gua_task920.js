@@ -1,35 +1,5 @@
 /*
-会员“食”力派 [gua_opencard24.js]
-————————————————
-跑此脚本需要添加依赖文件[sign_graphics_validate.js]
 
-一次性脚本
-
-没有邀请助力
-没有邀请助力
-没有邀请助力
-
-开36卡 每个卡10京豆 (如果在别的地方开过卡 则在这不能开卡 故没有京豆
-3个日常任务 有关注、加购 (每次1京豆 关注和加购可以多次
-(默认不加购 如需加购请设置环境变量[guaopencard_addSku24]为"true"
-
-默认脚本不执行
-如需执行脚本请设置环境变量
-做任务
-guaopencardRun24="true"
-开卡
-guaopencard24="true"
-
-活动有点小毛病
-经常获取不到任务信息
-
-————————————————
-因需要加载依赖文件
-所有不支持手机软件(Quantumultx、Loon、Surge、小火箭等
-————————————————
-入口：[ 会员“食”力派 (https://prodev.m.jd.com/mall/active/3Y9i9BXZZwdsJFkxvrYvkmSih6MZ/index.html)]
-
-获得到的京豆不一定到账
 
 30 0,19 20-30 9 * gua_task920, tag=生活有范, enabled=true
 
