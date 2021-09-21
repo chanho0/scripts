@@ -24,6 +24,7 @@ if ($.isNode()) {
         return;
     }
     for (let i = 0; i < cookiesArr.length; i++) {
+		await $.wait(11000)
         await getUA();
         $.index = i + 1;
         $.cookie = cookiesArr[i];
