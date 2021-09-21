@@ -30,7 +30,7 @@ if ($.isNode()) {
     //    if(!res){res = [];}
     //}
     if(res.length > 0){
-        $.shareUuid = getRandomArrayElements(res,1)[0];
+        $.shareUuid = getRandomArrayElements(res)[0];
     }
     for (let i = 0; i < cookiesArr.length; i++) {
         await getUA();
@@ -51,7 +51,7 @@ if ($.isNode()) {
         }
         await main();
         console.log(`防止黑IP，等待30秒`);
-        await $.wait(30000);
+        await $.wait(42000);
     }
 })().catch((e) => {$.log('', `❌ ${$.name}, 失败! 原因: ${e}!`, '')}).finally(() => {$.done();});
 
