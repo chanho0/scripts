@@ -52,9 +52,9 @@ const BASE_URL = 'https://m.jingxi.com/cubeactive/steprewardv3'
     res = await getAuthorShareCode('https://cdn.jsdelivr.net/gh/Aaron-lv/updateTeam@master/shareCodes/jxhb.json')
   }
   if (res && res.activeId) $.activeId = res.activeId;
-  //$.authorMyShareIds = [...((res && res.codes) || [])];
+  $.authorMyShareIds = [];
   //开启红包,获取互助码
-  for (let i = 0; i < 2; i++) {
+  for (let i = 0; i < 3; i++) {
     cookie = cookiesArr[i];
     $.UserName = decodeURIComponent(cookie.match(/pt_pin=([^; ]+)(?=;?)/) && cookie.match(/pt_pin=([^; ]+)(?=;?)/)[1])
     $.index = i + 1;
@@ -82,7 +82,7 @@ const BASE_URL = 'https://m.jingxi.com/cubeactive/steprewardv3'
     $.UserName = decodeURIComponent(cookie.match(/pt_pin=([^; ]+)(?=;?)/) && cookie.match(/pt_pin=([^; ]+)(?=;?)/)[1]);
     $.canHelp = true;
     UA = UAInfo[$.UserName]
-    for (let j = 0; j < 2 && $.canHelp; j++) {
+    for (let j = 0; j < 3 && $.canHelp; j++) {
       console.log(`【${$.UserName}】去助力【${$.packetIdArr[j].userName}】邀请码：${$.packetIdArr[j].strUserPin}`);
       if ($.UserName === $.packetIdArr[j].userName) {
         console.log(`助力失败：不能助力自己`)
@@ -113,7 +113,7 @@ const BASE_URL = 'https://m.jingxi.com/cubeactive/steprewardv3'
     }
   }
   //拆红包
-  for (let i = 0; i < 2; i++) {
+  for (let i = 0; i < 3; i++) {
     cookie = cookiesArr[i];
     $.canOpenGrade = true;
     $.UserName = decodeURIComponent(cookie.match(/pt_pin=([^; ]+)(?=;?)/) && cookie.match(/pt_pin=([^; ]+)(?=;?)/)[1])
