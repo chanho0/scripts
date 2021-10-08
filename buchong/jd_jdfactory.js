@@ -35,6 +35,7 @@ cron "10 0,6-23 * * *" script-path=https://gitee.com/lxk0301/jd_scripts/raw/mast
 const $ = new Env('东东工厂');
 process.env.JD_JOIN_ZLC = false
 process.env.FACTORAY_WANTPRODUCT_NAME = '华为-礼品2 mini音箱'
+process.env.DDFACTORY_SHARECODES = 'T015vf11RBka9VLWT0cCjVWnYaS5kRrbA&T0225KkcRx4YplTeJh-hxaVedACjVWnYaS5kRrbA&T0225KkcRR4do1yEcR6mx_AMJgCjVWnYaS5kRrbA&T0205KkcI11siCCyVFOyypF9CjVWnYaS5kRrbA&T018v_5zQhsc8FTWIR6b1ACjVWnYaS5kRrbA'
 const notify = $.isNode() ? require('./sendNotify') : '';
 //Node.js用户请在jdCookie.js处填写京东ck;
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
