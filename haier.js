@@ -60,7 +60,7 @@ if ($.isNode()) {
             $.activityShopId = '1000001782'
             $.activityUrl = `https://lzdz4-isv.isvjcloud.com/dingzhi/haier/active/activity/${$.authorNum}?activityId=${$.activityId}&shareUuid=${encodeURIComponent($.authorCode)}&adsource=null&shareuserid4minipg=null&shopid=${$.activityShopId}&lng=00.000000&lat=00.000000&sid=&un_area=`
             await member();
-            await $.wait(2000)
+            await $.wait(4000)
             if ($.bean > 0) {
                 message += `\n【京东账号${$.index}】${$.nickName || $.UserName} \n       └ 获得 ${$.bean} 京豆。`
             }
@@ -101,22 +101,24 @@ async function member() {
             }
             console.log('去助力 -> '+$.authorCode)
             await task('taskact/common/drawContent', `activityId=${$.activityId}&pin=${encodeURIComponent($.secretPin)}`)
-            await $.wait(1000)
+            await $.wait(2000)
             $.log("签到")
             await task("haier/active/saveTask", `activityId=${$.activityId}&actorUuid=${encodeURIComponent($.actorUuid)}&pin=${encodeURIComponent($.secretPin)}&taskType=0&taskValue=0`)
-            await $.wait(1000)
+            await $.wait(2000)
             $.log("关注店铺")
             await task("haier/active/saveTask", `activityId=${$.activityId}&actorUuid=${encodeURIComponent($.actorUuid)}&pin=${encodeURIComponent($.secretPin)}&taskType=1&taskValue=1`)
-            await $.wait(1000)
+            await $.wait(2000)
             $.log("加购商品")
             await task("haier/active/saveTask", `activityId=${$.activityId}&actorUuid=${encodeURIComponent($.actorUuid)}&pin=${encodeURIComponent($.secretPin)}&taskType=2&taskValue=2`)
-            await $.wait(1000)
+            await $.wait(2000)
             $.log("流览商品")
             await task("haier/active/saveTask", `activityId=${$.activityId}&actorUuid=${encodeURIComponent($.actorUuid)}&pin=${encodeURIComponent($.secretPin)}&taskType=5&taskValue=5`)
             await task('crm/pageVisit/insertCrmPageVisit', `venderId=${$.venderId}&elementId=${encodeURIComponent(`商品100012645766`)}&pageId=${$.activityId}&pin=${encodeURIComponent($.secretPin)}`, 1)
-            await task('interaction/write/writePersonInfo', `jdActivityId=${$.jdActivityId}&pin=${encodeURIComponent($.secretPin)}&actionType=5&venderId=${$.venderId}&activityId=${$.activityId}`,1)
-            await task("haier/active/saveFirst", `activityId=${$.activityId}&actorUuid=${encodeURIComponent($.actorUuid)}&pin=${encodeURIComponent($.secretPin)}`)
             await $.wait(1000)
+            await task('interaction/write/writePersonInfo', `jdActivityId=${$.jdActivityId}&pin=${encodeURIComponent($.secretPin)}&actionType=5&venderId=${$.venderId}&activityId=${$.activityId}`,1)
+            await $.wait(1000)
+            await task("haier/active/saveFirst", `activityId=${$.activityId}&actorUuid=${encodeURIComponent($.actorUuid)}&pin=${encodeURIComponent($.secretPin)}`)
+            await $.wait(2000)
             $.log("逛主会场")
             await task("haier/active/saveTask", `activityId=${$.activityId}&actorUuid=${encodeURIComponent($.actorUuid)}&pin=${encodeURIComponent($.secretPin)}&taskType=12&taskValue=12`)
             await task('crm/pageVisit/insertCrmPageVisit', `venderId=${$.venderId}&elementId=${encodeURIComponent(`浏览会场`)}&pageId=${$.activityId}&pin=${encodeURIComponent($.secretPin)}`, 1)
@@ -124,7 +126,9 @@ async function member() {
             $.log("观看直播")
             await task("haier/active/saveTask", `activityId=${$.activityId}&actorUuid=${encodeURIComponent($.actorUuid)}&pin=${encodeURIComponent($.secretPin)}&taskType=31&taskValue=31`)
             await task('crm/pageVisit/insertCrmPageVisit', `venderId=${$.venderId}&elementId=${encodeURIComponent(`浏览直播`)}&pageId=${$.activityId}&pin=${encodeURIComponent($.secretPin)}`, 1)
-
+            await $.wait(1000)
+            $.log("抽奖")
+            await task("haier/active/saveTask", `activityId=${$.activityId}&actorUuid=${encodeURIComponent($.actorUuid)}&pin=${encodeURIComponent($.secretPin)}&type=0`)
         }
     }
 }
@@ -173,8 +177,8 @@ function task(function_id, body, isCommon = 0, own = 0) {
                                     }
                                     break;
                                 case 'haier/active/draw':
-                                    if (data.data.wdsrvo.drawOk) {
-                                        console.log(data.data.wdsrvo.name)
+                                    if (data.data.drawOk) {
+                                        console.log(data.data.name)
                                     }
                                     break;
                                 default:
