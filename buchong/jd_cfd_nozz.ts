@@ -1,7 +1,7 @@
 /**
  * 京喜财富岛去珍珠
  * 包含雇佣导游，建议每小时1次
- *
+ * 11 * * * * jd_cfd_nozz.ts
  * 此版本暂定默认帮助HelloWorld，帮助助力池
  * export HELP_HW = true    // 帮助HelloWorld
  * export HELP_POOL = true  // 帮助助力池
