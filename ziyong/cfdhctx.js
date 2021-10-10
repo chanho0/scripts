@@ -3,10 +3,10 @@
 
 //# 定时 0 * * * *
 /*
-0 0 * * * cfdhctx.js tag=财富岛兑换
+0 * * * * cfdhctx.js tag=财富岛合成兑换
 */
 process.env.CFD_MOON_NUM = 10
-const $ = new Env('财富岛兑换');
+const $ = new Env('财富岛合成兑换');
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 //IOS等用户直接用NobyDa的jd cookie
 let cookiesArr = [], cookie = '', message ='', index, nickName = '';
