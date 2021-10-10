@@ -1,5 +1,5 @@
 /*
-0 */2 11 10 * jd_ddworld_exchange.js
+cron: 0 * 11 10 * jd_ddworld_exchange.js
 */
 const $ = new Env("东东世界兑换");
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
