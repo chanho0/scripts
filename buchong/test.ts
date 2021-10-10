@@ -1,7 +1,7 @@
 /**
  * 京喜财富岛只提交助力码版
  * 包含雇佣导游，建议每小时1次
- * cron 50 * * * *
+ * cron: 50 * * * *
  * 此版本暂定默认帮助HelloWorld，帮助助力池
  * export HELP_HW = true    // 帮助HelloWorld
  * export HELP_POOL = true  // 帮助助力池
