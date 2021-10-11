@@ -47,7 +47,6 @@ let shareCodesSelf: string[] = [], shareCodes: string[] = [], shareCodesHW: stri
 
   console.log('内部助力码：', shareCodesSelf)
 
-  }
 
 
 
