@@ -45,10 +45,10 @@ let shareCodesSelf: string[] = [], shareCodes: string[] = [], shareCodesHW: stri
     await wait(1000)
   }
 
-  console.log('内部助力码：', shareCodesSelf)
 
 
 
+})()
 
 interface Params {
   userDraw?: number,
