@@ -52,7 +52,7 @@ $.shareCodesArr = [];
       $.UserName = decodeURIComponent(cookie.match(/pt_pin=([^; ]+)(?=;?)/) && cookie.match(/pt_pin=([^; ]+)(?=;?)/)[1])
       $.index = i + 1;
       await getUA()
-      await getInviteId();
+      //await getInviteId();
     }
   }
   if(Object.getOwnPropertyNames($.inviteIdCodesArr).length > 0){
@@ -348,11 +348,11 @@ function shareCodesFormat() {
     if ($.shareCodesArr[$.index - 1]) {
       $.newShareCodes = $.shareCodesArr[$.index - 1].split('@');
     }
-    if($.index == 1) $.newShareCodes = [...inviteCodes]
+    if($.index != 0) $.newShareCodes = [...inviteCodes]
     try{
       const readShareCodeRes = await readShareCode();
-      if (readShareCodeRes && readShareCodeRes.code === 200) {
-        $.newShareCodes = [...new Set([...$.newShareCodes, ...(readShareCodeRes.data || [])])];
+      if (readShareCodeRes && readShareCodeRes.code != 200) {
+        $.newShareCodes = [...new Set([...$.newShareCodes/*, ...(readShareCodeRes.data || [])*/])];
       }
     } catch (e) {
       console.log(e);
