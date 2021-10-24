@@ -90,7 +90,7 @@ let nowTime = new Date().getTime() + new Date().getTimezoneOffset()*60*1000 + 8*
     for (let i = 0; i < cookiesArr.length; i++) {
       if (cookiesArr[i]) {
         cookie = cookiesArr[i];
-        $.canHelp = false;//能否助力
+        $.canHelp = true;//能否助力
         $.UserName = decodeURIComponent(cookie.match(/pt_pin=([^; ]+)(?=;?)/) && cookie.match(/pt_pin=([^; ]+)(?=;?)/)[1])
         if ((cookiesArr && cookiesArr.length >= 1) && $.canHelp) {
           console.log(`\n先自己账号内部相互邀请助力\n`);
