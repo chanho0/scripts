@@ -5,11 +5,11 @@ export redEnvelopeId="" ##本期活动ID
 export inviter="" ##邀请码
 [task_local]
 #柠檬发财大赢家
- 0,2 0 * * * jd_lemon_dyj.js, tag=柠檬大赢家助力, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/jd.png, enabled=true
+ 3 0 * * * jd_dyj_code.js, tag=柠檬发财大赢家, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/jd.png, enabled=true
 */
 
 
-const $ = new Env('柠檬大赢家助力');
+const $ = new Env('柠檬发财大赢家获取邀请码');
 const notify = $.isNode() ? require('./sendNotify') : '';
 //Node.js用户请在jdCookie.js处填写京东ck;
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
@@ -42,7 +42,7 @@ const JD_API_HOST = 'https://api.m.jd.com/client.action';
     return;
   }
 
-  for (let i = 0; i < cookiesArr.length; i++) {
+  for (let i = 0; i < 2; i++) {
     if (cookiesArr[i]) {
       cookie = cookiesArr[i];
       $.UserName = decodeURIComponent(cookie.match(/pt_pin=([^; ]+)(?=;?)/) && cookie.match(/pt_pin=([^; ]+)(?=;?)/)[1])
