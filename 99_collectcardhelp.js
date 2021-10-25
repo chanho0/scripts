@@ -1,5 +1,5 @@
-
-const $ = new Env('99集卡');
+//领券中心悬浮窗，欧皇活动，只做助力和抽卡
+const $ = new Env('集卡');
 const notify = $.isNode() ? require('./sendNotify') : '';
 //Node.js用户请在jdCookie.js处填写京东ck;
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
@@ -8,6 +8,7 @@ let cookiesArr = [], cookie = '';
 let isLoginInfo = {}
 $.groupId  = [];
 let helpnum =3
+//默认助力前三
 if ($.isNode()) {
   Object.keys(jdCookieNode).forEach((item) => {
     cookiesArr.push(jdCookieNode[item])
@@ -53,7 +54,9 @@ const JD_API_HOST = 'https://api.m.jd.com/api';
     $.UserName = decodeURIComponent(cookie.match(/pt_pin=([^; ]+)(?=;?)/) && cookie.match(/pt_pin=([^; ]+)(?=;?)/)[1]);
     $.canHelp = true;
     $.groupId  = [...new Set($.groupId )];
+    $.uuid  = getUUID('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx');;
     
+    console.log(`账号 ${$.uuid}`)
     if (cookiesArr && cookiesArr.length >= 2) {
       console.log(`\n\n自己账号内部互助`);
       for (let j = 0; j < $.groupId .length && $.canHelp; j++) {
@@ -78,8 +81,9 @@ const JD_API_HOST = 'https://api.m.jd.com/api';
     $.UserName = decodeURIComponent(cookie.match(/pt_pin=([^; ]+)(?=;?)/) && cookie.match(/pt_pin=([^; ]+)(?=;?)/)[1]);
     $.canHelp = true;
     $.groupId  = [...new Set($.groupId )];
+    $.opennum=1
     if (!isLoginInfo[$.UserName]) continue
-        for (let i = 0; i < 20; i++) {
+    while (0 < $.opennum) {
         await open();
         await $.wait(8000)
     }
@@ -136,7 +140,7 @@ function red() {
 
 function jinli_h5assist(groupId ) {
   //一个人一天只能助力两次，助力码groupId  每天都变
-  const body = {"activityKey":"53275a405ec3cba14b28662e05f6c53b",groupId ,"uuid":"6fd5451872dd55afe62bfdf1be191fe074c93f6b"};
+  const body = {"activityKey":"53275a405ec3cba14b28662e05f6c53b",groupId ,"uuid":$.uuid};
   const options = taskUrl("necklacecard_assist", body)
   return new Promise((resolve) => {
     $.post(options, (err, resp, data) => {
@@ -178,7 +182,8 @@ function open() {
           data = JSON.parse(data);
           if (data && data.data && data.data.biz_code === 0) {
             // status ,0:助力成功，1:不能重复助力，3:助力次数耗尽，8:不能为自己助力
-            console.log(`你获得卡片：${data.data.result.cardName}`)
+            console.log(`你获得卡片：${data.data.result.cardName}还有${data.data.result.remainOpenCardNum}次抽卡机会`)
+            $.opennum=data.data.result.remainOpenCardNum
 
           } else {
             console.log(`助力异常：${JSON.stringify(data)}`);
@@ -263,6 +268,18 @@ function TotalBean() {
       }
     })
   })
+}
+
+function getUUID(format = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', UpperCase = 0) {
+    return format.replace(/[xy]/g, function (c) {
+        var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+        if (UpperCase) {
+            uuid = v.toString(36).toUpperCase();
+        } else {
+            uuid = v.toString(36)
+        }
+        return uuid;
+    });
 }
 
 function jsonParse(str) {
