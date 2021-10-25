@@ -24,7 +24,7 @@ cron "10 * * * *" script-path=jd_jdfactory.js,tag=东东工厂
 ============小火箭=========
 东东工厂 = type=cron,script-path=jd_jdfactory.js, cronexpr="10 * * * *", timeout=3600, enable=true
  */
-process.env.FACTORAY_WANTPRODUCT_NAME = '华为-礼品2 mini音箱'
+process.env.FACTORAY_WANTPRODUCT_NAME = '华为-礼品1 蓝牙音箱'
 const $ = new Env('东东工厂');
 
 const notify = $.isNode() ? require('./sendNotify') : '';
