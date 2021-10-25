@@ -1,4 +1,4 @@
-//领券中心悬浮窗，欧皇活动，只做助力和抽卡
+//领券中心悬浮窗，欧皇活动，只做助力和抽卡20次机会/其他任务做完才7次机会，没必要
 const $ = new Env('集卡');
 const notify = $.isNode() ? require('./sendNotify') : '';
 //Node.js用户请在jdCookie.js处填写京东ck;
@@ -7,7 +7,7 @@ const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 let cookiesArr = [], cookie = '';
 let isLoginInfo = {}
 $.groupId  = [];
-let helpnum =3
+let helpnum =process.env.CardNum ? process.env.CardNum : 3;
 //默认助力前三
 if ($.isNode()) {
   Object.keys(jdCookieNode).forEach((item) => {
@@ -56,7 +56,6 @@ const JD_API_HOST = 'https://api.m.jd.com/api';
     $.groupId  = [...new Set($.groupId )];
     $.uuid  = getUUID('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx');;
     
-    console.log(`账号 ${$.uuid}`)
     if (cookiesArr && cookiesArr.length >= 2) {
       console.log(`\n\n自己账号内部互助`);
       for (let j = 0; j < $.groupId .length && $.canHelp; j++) {
@@ -72,6 +71,9 @@ const JD_API_HOST = 'https://api.m.jd.com/api';
 
       }
     }
+    if($.groupId .length<1){
+      break
+    }
 
   }
 
@@ -83,7 +85,8 @@ const JD_API_HOST = 'https://api.m.jd.com/api';
     $.groupId  = [...new Set($.groupId )];
     $.opennum=1
     if (!isLoginInfo[$.UserName]) continue
-    while (0 < $.opennum) {
+    console.log(`账号 ${$.index} ${$.UserName} 开始给进行抽卡`)
+    while (0 < $.opennum) {     
         await open();
         await $.wait(8000)
     }
@@ -186,7 +189,9 @@ function open() {
             $.opennum=data.data.result.remainOpenCardNum
 
           } else {
-            console.log(`助力异常：${JSON.stringify(data)}`);
+            $.opennum=0
+            console.log(`你已没有抽奖机会`);
+            console.log(`异常：${JSON.stringify(data)}`);
           }
         }
       } catch (e) {
