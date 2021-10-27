@@ -8,6 +8,7 @@ let cookiesArr = [], cookie = '', message;
 let secretp='',inviteId=[]
 let num=0;
 
+
 if ($.isNode()) {
   Object.keys(jdCookieNode).forEach((item) => {
     cookiesArr.push(jdCookieNode[item])
@@ -20,6 +21,7 @@ const JD_API_HOST = 'https://api.m.jd.com';
 let inviteCodes = []
 $.shareCodesArr = [];
 $.inviteId  = [];
+$.encryptPin=[]
 !(async () => {
   if (!cookiesArr[0]) {
     $.msg($.name, '【提示】请先获取京东账号一cookie\n直接使用NobyDa的京东签到获取', 'https://bean.m.jd.com/bean/signIndex.action', {"open-url": "https://bean.m.jd.com/bean/signIndex.action"});
@@ -45,7 +47,12 @@ $.inviteId  = [];
 		message = '';
 		console.log(`\n******开始【京东账号${$.index}】${$.nickName || $.UserName}*********\n`);
 		try {
-			await get_superboxSupBoxHomePage()
+      if(i>0){
+        await get_superboxSupBoxHomePage($.encryptPin[i-1],"332")
+      }else{
+        await get_superboxSupBoxHomePage("","")
+      }
+			
 			
 				var conti = false
 
@@ -57,6 +64,7 @@ $.inviteId  = [];
           taskDetail = res.data[p]
           //console.log(`\n\nhome:${taskDetail.id }\n`)
           if(!taskDetail.taskFinished && taskDetail.id!=332){
+            console.log(`\n\n开始做:${taskDetail.taskShowTitle }任务\n`)
             res1 = await getTaskDetail(taskDetail.id,taskDetail.taskType)
             let task =[]
            // console.log(`\n\nres:${res1.data.taskItemList}\n`)
@@ -73,31 +81,31 @@ $.inviteId  = [];
 
           }
       }
-      console.log(`\n******开始抽奖*********\n`);
-			await $.wait(1000)
-      for (var n=0;n<5;n++){
-          superboxOrdinaryLottery()
-          await $.wait(5000)
-      }
+      // console.log(`\n******开始抽奖*********\n`);
+			// await $.wait(1000)
+      // for (var n=0;n<5;n++){
+      //     superboxOrdinaryLottery()
+      //     await $.wait(5000)
+      // }
 		}catch(e){
 			$.log('', `❌ ${$.name}, 失败! 原因: ${e}!`, '')
 		}
     }
   }
 
+  for (let i = 0; i < cookiesArr.length; i++) {
+    cookie = cookiesArr[i];
+    $.index = i + 1;
+    $.canHelp = true;
+    $.UserName = decodeURIComponent(cookie.match(/pt_pin=([^; ]+)(?=;?)/) && cookie.match(/pt_pin=([^; ]+)(?=;?)/)[1]);
 
-
- 
-
-
-
-
-
-
-
-
-
- 
+    console.log(`账号 ${$.index} ${$.UserName} 开始抽奖`)
+    for (var n=0;n<5 && $.canHelp;n++){
+      superboxOrdinaryLottery()
+      await $.wait(5000)
+    }
+    //await $.wait(2000)
+  }
 
 
 })()
@@ -117,9 +125,9 @@ $.inviteId  = [];
 
 
 
-function get_superboxSupBoxHomePage(){
+function get_superboxSupBoxHomePage(encryptPin,taskId){
   let linkId="DQFdr1ttvWWzn0wsQ7JDZQ"
-	let body={"taskId":"","linkId":linkId,"encryptPin":""};
+	let body={"taskId":taskId,"linkId":linkId,"encryptPin":encryptPin};
 	return new Promise((resolve) => {$.get(taskPostUrl2("superboxSupBoxHomePage",body), async (err, resp, data) => {
       try {
         if (err) {
@@ -131,8 +139,8 @@ function get_superboxSupBoxHomePage(){
             //console.log(`\n\nhome:${JSON.stringify(data)}\n`)
             if (data.code === 0) {
               if (data.data ) {
-                encryptPin = data.data.encryptPin
-					
+ 
+                $.encryptPin.push(data.data.encryptPin)
               } 
             } else {
               console.log(`\n\nencryptPin失败:${JSON.stringify(data)}\n`)
@@ -221,8 +229,11 @@ function apDoTask(taskId,taskType,itemId){
         } else {
           if (safeGet(data)) {
             data = JSON.parse(data);
-            console.log(`\n\ndotask:${JSON.stringify(data)}\n`)
-            if (data.code === 0) {
+            //console.log(`\n\ndotask:${JSON.stringify(data)}\n`)
+            if (data.code === 0 && data.data.finished) {
+              console.log(`\n\n任务完成\n`)
+
+
               resolve(data.data)
 
               } 
@@ -253,11 +264,24 @@ function superboxOrdinaryLottery(){
         } else {
           if (safeGet(data)) {
             data = JSON.parse(data);
-            console.log(`\n\ndotask:${JSON.stringify(data)}\n`)
+
             if (data.code === 0) {
+              if(data.data.rewardType ===0){
+                console.log(`\n\nddo狗毛一根\n`)
+              }else if(data.data.rewardType ===2){
+                console.log(`\n\n红包${data.data.discount}元\n`)
+
+              }else{
+                console.log(`\n\n不知道是啥，去活动看看\n`)
+
+              }
+
               resolve(data.data)
 
-              } 
+              }else{
+                console.log(`\n\n${data.errMsg}\n`)
+                $.canHelp = false;
+              }
             } else {
               console.log(`\n\nsecretp失败:${JSON.stringify(data)}\n`)
             }
