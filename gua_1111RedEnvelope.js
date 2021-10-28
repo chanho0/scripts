@@ -299,7 +299,7 @@ function getEid(arr) {
 }
 
 function getUA(){
-  $.UA = `jdapp;iPhone;10.2.0;13.1.2;${randomString(40)};M/5.0;network/wifi;ADID/;model/iPhone8,1;addressid/2308460611;appBuild/167853;jdSupportDarkMode/0;Mozilla/5.0 (iPhone; CPU iPhone OS 13_1_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1;`
+  $.UA = `jdapp;iPhone;10.1.0;14.1;d103041a8e7179c1018de0a8ba15d0168ae96378;network/wifi;ADID/BF864B32-93A9-FB00-F860-9F43DCD4C140;model/iPhone9,2;addressid/5619498385;appBuild/167841;jdSupportDarkMode/0;Mozilla/5.0 (iPhone; CPU iPhone OS 14_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1;`
 }
 function randomString(e) {
   e = e || 32;
