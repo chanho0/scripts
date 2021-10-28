@@ -7,7 +7,7 @@ export InviterPin=""
 
 [task_local]
 #柠檬赚金币
-0 5 * * * http://nm66.top/jd_zjb.js, tag=柠檬赚金币, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/jd.png, enabled=true
+0 0-23/3 * * * http://nm66.top/jd_zjb.js, tag=柠檬赚金币, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/jd.png, enabled=true
 */
 
 const $ = new Env('柠檬赚金币');
