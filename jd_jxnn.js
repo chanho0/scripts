@@ -1,5 +1,6 @@
 /**
-惊喜牛牛
+惊喜牧场
+cron 23 0-23/3 * * * https://raw.githubusercontent.com/star261/jd/main/scripts/jd_jxmc.js
 */
 // prettier-ignore
 !function (t, r) { "object" == typeof exports ? module.exports = exports = r() : "function" == typeof define && define.amd ? define([], r) : t.CryptoJS = r() }(this, function () {
@@ -18,9 +19,7 @@ $.inviteCodeList = [];
 $.inviteCodeList1 = [];
 let codeList = [];
 let cookiesArr = [];
-let helpnum = 3;
-
-//路径牛牛赚大钱-牛牛福利社助力
+let helpnum = 5;
 $.appId = 10028;
 $.helpCkList = [];
 if ($.isNode()) {
@@ -199,7 +198,7 @@ async function takeGetRequest(type) {
   switch (type) {
     
     case 'Gethelp':
-      url = `https://m.jingxi.com/pgcenter/sign/UserSignOpr?sceneval=2&source=&_stk=sceneval%2Csource&_ste=1`;
+      url = `https://m.jingxi.com/pgcenter/sign/UserSignNew?sceneval=2&source=&_stk=sceneval%2Csource&_ste=1`;
       url += `&h5st=${decrypt(Date.now(), '', '', url)}&&sceneval=2&g_login_type=1&callback=jsonpCBK${String.fromCharCode(Math.floor(Math.random() * 26) + "A".charCodeAt(0))}&g_ty=ls`;
       break;
     case 'Dohelp':
