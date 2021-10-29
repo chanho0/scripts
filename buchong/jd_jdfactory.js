@@ -292,6 +292,20 @@ async function doTask() {
           console.log(`${item.taskName}已做完`)
         }
       }
+      if (item.taskType === 9) {
+        //逛会场任务2
+        if (item.status === 1) {
+          console.log(`准备做此任务：${item.taskName}`);
+          for (let task of item.shoppingActivityVos) {
+            if (task.status === 1) {
+              await queryVkComponent();
+              await jdfactory_collectScore(task.taskToken);
+            }
+          }
+        } else {
+          console.log(`${item.taskName}已做完`)
+        }
+      }
       if (item.taskType === 10) {
         if (item.status === 1) {
           if (item.threeMealInfoVos[0].status === 1) {
