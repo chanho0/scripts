@@ -56,8 +56,12 @@ await BROWSE_CHANNEL(2)
 await BROWSE_CHANNEL(3)
 await BROWSE_CHANNEL(4)
 await help()
+
+for (let i = 0; i < 10; i++) {
+console.log(`挖宝${i}次`) 
       await wb()
 
+    }
     }
   }
 })()
