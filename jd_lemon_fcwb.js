@@ -10,11 +10,19 @@ const JD_API_HOST = 'https://api.m.jd.com';
 let cookiesArr = [], cookie = '', message;
 let fcwbinviteCode=''
 let fcwbinviter=''
+let fcwbroud=''
+let fcwbinviteCodeArr = []
+let fcwbinviterArr= []
+let fcwbinviteCodes=''
+let fcwbinviters=''
 if (process.env.fcwbinviteCode) {
   fcwbinviteCode = process.env.fcwbinviteCode;
 }
 if (process.env.fcwbinviter) {
   fcwbinviter = process.env.fcwbinviter;
+}
+if (process.env.fcwbroud) {
+  fcwbroud = process.env.fcwbroud;
 }
 if ($.isNode()) {
   Object.keys(jdCookieNode).forEach((item) => {
@@ -49,21 +57,55 @@ if ($.isNode()) {
         }
         continue
       }
+          if (process.env.fcwbinviteCode && process.env.fcwbinviteCode.indexOf('@') > -1) {
+            fcwbinviteCodeArr = process.env.fcwbinviteCode.split('@');
 
+        }else {
+            fcwbinviteCodes = [process.env.fcwbinviteCode]
+            
+        };
+                    if (process.env.fcwbinviter && process.env.fcwbinviter.indexOf('@') > -1) {
+            fcwbinviterArr = process.env.fcwbinviter.split('@');
+            console.log(`邀请码您选择的是用"@"隔开\n`)
+        } else {
+            
+            fcwbinviters= [process.env.fcwbinviter]
+        };
+        Object.keys(fcwbinviteCodes).forEach((item) => {
+        if (fcwbinviteCodes[item]) {
+            fcwbinviteCodeArr.push(fcwbinviteCodes[item])
+        }
+    })
+            Object.keys(fcwbinviters).forEach((item) => {
+        if (fcwbinviters[item]) {
+            fcwbinviterArr.push(fcwbinviters[item])
+        }
+    })
+          console.log(`共${fcwbinviteCodeArr.length}个邀请码`)
+	        for (let k = 0; k < fcwbinviteCodeArr.length; k++) {
+                $.message = ""
+                fcwbinviteCode = fcwbinviteCodeArr[k]
+                fcwbinviter = fcwbinviterArr[k]
+                $.index = k + 1;
+          
+await help()
+	        }
+    
+    
+    }
 await home()
 await BROWSE_CHANNEL(1)
 await BROWSE_CHANNEL(2)
 await BROWSE_CHANNEL(3)
 await BROWSE_CHANNEL(4)
-await help()
 
-for (let i = 0; i < 10; i++) {
+for (let i = 0; i < 5; i++) {
 console.log(`挖宝${i}次`) 
-      await wb()
+      await wb(fcwbroud,i,i)
 
     }
     }
-  }
+  
 })()
   .catch((e) => {
     $.log('', `❌ ${$.name}, 失败! 原因: ${e}!`, '')
@@ -71,12 +113,26 @@ console.log(`挖宝${i}次`)
   .finally(() => {
     $.done();
   })
-function wb() {
+function wb(round,rowIdx,colIdx) {
 
  return new Promise((resolve) => {
-  let body = {"round":1,"rowIdx":1,"colIdx":3,"linkId":"SS55rTBOHtnLCm3n9UMk7Q"}
-  $.get(taskurl('happyDigDo',body), async (err, resp, data) => {
-      // console.log(data)  
+  //let body = {"round":${fcwbroud},"rowIdx":${rowIdx},"colIdx":${colIdx},"linkId":"SS55rTBOHtnLCm3n9UMk7Q"}
+  
+  const nm= {
+    url: `${JD_API_HOST}/?functionId=happyDigDo&body={"round":${fcwbroud},"rowIdx":${rowIdx},"colIdx":${colIdx},"linkId":"SS55rTBOHtnLCm3n9UMk7Q"}&t=1635561607124&appid=activities_platform&client=H5&clientVersion=1.0.0`,
+   
+    headers: {
+
+        "Cookie": cookie,
+        "Origin": "https://api.m.jd.com",
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36",
+
+    }
+  }
+  
+  
+  $.get(nm, async (err, resp, data) => {
+
       try {
         if (err) {
           console.log(`${JSON.stringify(err)}`)
@@ -88,7 +144,7 @@ function wb() {
                console.log(`挖到${data.data.chunk.value}`)  
               // console.log(`export fcwbinviter='${data.data.markedPin}'`)  
              }else if(data.success==false){
-             console.log('黑号 快去买吧 叼毛')}
+             console.log(data.errMsg)}
           }
         }
       } catch (e) {
