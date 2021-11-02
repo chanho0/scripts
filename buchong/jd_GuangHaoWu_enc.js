@@ -1,6 +1,6 @@
 /*
 逛好物 赚京豆
-cron 0 1 * * * jd_GuangHaoWu_enc.js
+cron 3 0 * * * jd_GuangHaoWu_enc.js
 */
 const $ = new Env('逛好物 赚京豆');
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
