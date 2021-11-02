@@ -77,7 +77,7 @@ if ($.isNode()) {
     if (shareCodes.length > 0) {
         console.log(`\n开始互助\n`);
     }
-    authorCodes = ['', '',''];
+    authorCodes = ['afd029be-3033-42c6-b0c7-4ad3abd5ce3a', '44ac2fbd-cab4-4c89-805d-33c7955d2a7c','386e2a8f-72b1-4b9f-b45c-65956eb6ec35'];
     shareCodes = [...new Set([...shareCodes, ...(authorCodes || [])])];
     for (let i = 0; i < cookiesArr.length; i++) {
         $.cookie = cookiesArr[i];
