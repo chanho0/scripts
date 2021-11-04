@@ -1,9 +1,9 @@
 /*
 双十一无门槛红包
-cron 0 10,12,20 * * * https://raw.githubusercontent.com/star261/jd/main/scripts/jd_red.js
+cron 0 10,12,20 * * * https://raw.githubusercontent.com/star261/jd/main/scripts/jd_jxred.js
 返利变量：FLCODE，默认给脚本作者返利，若需要返利给自己，请自己修改返利变量FLCODE；例：FLCODE="你的返利code"
 * */
-const $ = new Env('双11红包');
+const $ = new Env('双11红包star');
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 const flCode = $.isNode() ? (process.env.FLCODE ? process.env.FLCODE : '3MXRfxu'):'3MXRfxu';
 let cookiesArr = [];
@@ -91,7 +91,7 @@ function mainInfo() {
             headers: {
                 "Accept-Language": "zh-cn",
                 "Accept-Encoding": "gzip, deflate, br",
-                'Cookie': `${cookie} ${$.newCookie}`,
+                'Cookie': `${$.newCookie} ${cookie}`,
                 "User-Agent": $.UA ,
             }
         }
@@ -164,7 +164,7 @@ async function getCoupons(shareCode){
             headers: {
                 "Accept-Language": "zh-cn",
                 "Accept-Encoding": "gzip, deflate, br",
-                'Cookie': `${cookie} ${$.newCookie}`,
+                'Cookie': `${$.newCookie} ${cookie}`,
                 'user-agent': $.UA
             }
         }
@@ -215,7 +215,7 @@ async function getInfo2() {
             url: $.url1,
             followRedirect:false,
             headers: {
-                'Cookie': `${cookie} ${$.newCookie}`,
+                'Cookie': `${$.newCookie} ${cookie}`,
                 'user-agent': $.UA
             }
         }
