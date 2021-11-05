@@ -90,7 +90,7 @@ headers: {
         $.get(options, async (err, resp, data) => {
             try {
 
-$.log("商品${shopid}："+data)
+$.log("商品"+${shopid}+":"+data)
 
                 //}
             } catch (e) {
@@ -122,7 +122,7 @@ headers: {
         $.get(options, async (err, resp, data) => {
             try {
 
-$.log("商品${shopid1}："+data)
+$.log("商品"+${shopid1}+":"+data)
 
                 //}
             } catch (e) {
