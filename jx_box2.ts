@@ -48,21 +48,6 @@ process.env.HW_Priority === 'false' ? HW_Priority = false : ''
     }
   }
 
-  let except: string[] = exceptCookie(path.basename(__filename))
-  for (let i = 0; i < cookiesArr.length; i++) {
-    cookie = cookiesArr[i]
-    UserName = decodeURIComponent(cookie.match(/pt_pin=([^;]*)/)![1])
-    index = i + 1
-    console.log(`\n开始【京东账号${index}】${UserName}\n`)
-
-    if (except.includes(encodeURIComponent(UserName))) {
-      console.log('已设置跳过')
-      continue
-    }catch (e: any) {
-      console.log(e)
-    }
-    //await wait(3000)
-  }
 })()
 
 interface Params {
