@@ -96,6 +96,15 @@ const urlSchema = `openjd://virtual?params=%7B%20%22category%22:%20%22jump%22,%2
 async function jdFruit() {
     subTitle = `【京东账号${$.index}】${$.nickName || $.UserName}`;
     try {
+        try {
+            for (let index = 0; index < 5; index++) {
+                await $.get(taskUrl("receiveStageEnergy", '%7B%22version%22%3A14%2C%22channel%22%3A1%2C%22babelChannel%22%3A%22120%22%7D&appid=wh5'), function(err, resp, data) {
+                    console.log('领助力奖励:' + resp.body);
+                })
+                await $.wait(2000);
+            }
+
+        } catch (error) {}
         await initForFarm();
         if ($.farmInfo.farmUserPro) {
             // ***************************
@@ -1289,7 +1298,7 @@ function timeFormat(time) {
 
 function readShareCode() {
     return new Promise(async resolve => {
-        $.get({ url: `https://cdn.nz.lu/api/farm/${randomCount}`, headers: { 'Host': 'api.jdsharecode.xyz' }, timeout: 10000 }, (err, resp, data) => {
+        $.get({ url: `https://ABC/api/farm/${randomCount}`, headers: { 'Host': 'api.jdsharecode.xyz' }, timeout: 10000 }, (err, resp, data) => {
             try {
                 if (err) {
                     console.log(`${JSON.stringify(err)}`)
