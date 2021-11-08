@@ -41,6 +41,7 @@ $.appId = 10028;
   $.CryptoJS = $.isNode() ? require('crypto-js') : CryptoJS;
   await requestAlgo();
   await $.wait(1000)
+  let res = []
   $.strMyShareIds = [...(res && res.shareId || [])]
   for (let i = 0; i < 3; i++) {
     if (cookiesArr[i]) {
