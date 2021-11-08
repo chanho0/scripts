@@ -41,14 +41,8 @@ $.appId = 10028;
   $.CryptoJS = $.isNode() ? require('crypto-js') : CryptoJS;
   await requestAlgo();
   await $.wait(1000)
-  let res = await getAuthorShareCode('')
-  if (!res) {
-    $.http.get({url: ''}).then((resp) => {}).catch((e) => console.log('刷新CDN异常', e));
-    await $.wait(1000)
-    res = await getAuthorShareCode('')
-  }
   $.strMyShareIds = [...(res && res.shareId || [])]
-  for (let i = 0; i < cookiesArr.length; i++) {
+  for (let i = 0; i < 3; i++) {
     if (cookiesArr[i]) {
       cookie = cookiesArr[i];
       $.UserName = decodeURIComponent(cookie.match(/pt_pin=([^; ]+)(?=;?)/) && cookie.match(/pt_pin=([^; ]+)(?=;?)/)[1]);
