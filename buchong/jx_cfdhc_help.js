@@ -43,7 +43,7 @@ $.appId = 10028;
   await $.wait(1000)
   let res = []
   $.strMyShareIds = [...(res && res.shareId || [])]
-  for (let i = 0; i < 3; i++) {
+  for (let i = 0; i < cookiesArr.length; i++) {
     if (cookiesArr[i]) {
       cookie = cookiesArr[i];
       $.UserName = decodeURIComponent(cookie.match(/pt_pin=([^; ]+)(?=;?)/) && cookie.match(/pt_pin=([^; ]+)(?=;?)/)[1]);
