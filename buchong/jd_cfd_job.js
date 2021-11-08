@@ -1,6 +1,6 @@
 /*
 京喜财富岛
-cron 1 * * * * jd_cfd.js
+cron  * * * * jd_cfd.js
 更新时间：2021-9-11
 活动入口：京喜APP-我的-京喜财富岛
 
@@ -9,7 +9,7 @@ cron 1 * * * * jd_cfd.js
 ============Quantumultx===============
 [task_local]
 #京喜财富岛
-1 * * * * https://raw.githubusercontent.com/Aaron-lv/sync/jd_scripts/jd_cfd.js, tag=京喜财富岛, img-url=https://raw.githubusercontent.com/58xinian/icon/master/jxcfd.png, enabled=true
+1 1-23/1 * * * https://raw.githubusercontent.com/Aaron-lv/sync/jd_scripts/jd_cfd.js, tag=京喜财富岛, img-url=https://raw.githubusercontent.com/58xinian/icon/master/jxcfd.png, enabled=true
 
 ================Loon==============
 [Script]
@@ -95,7 +95,7 @@ if ($.isNode()) {
   for (let i = 0; i < cookiesArr.length; i++) {
     cookie = cookiesArr[i];
     $.UserName = decodeURIComponent(cookie.match(/pt_pin=([^; ]+)(?=;?)/) && cookie.match(/pt_pin=([^; ]+)(?=;?)/)[1])
-    $.canHelp = true
+    $.canHelp = false
     UA = UAInfo[$.UserName]
     if ($.newShareCodes && $.newShareCodes.length) {
       console.log(`\n开始互助\n`);
