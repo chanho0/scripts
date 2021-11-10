@@ -4,7 +4,7 @@ cron 0 10,12,20 * * *  gua_redEnvelope.js
 整点跑 红包几率大点
 ck1助力 作者
 其余助力ck1
-https://u.jd.com/2tLVPm2
+https://u.jd.com/2CCAWgy
 跳转到app 可查看助力情况
 
 
@@ -61,9 +61,9 @@ let nowTime = new Date().getTime() + new Date().getTimezoneOffset()*60*1000 + 8*
     }
   }
   if(message){
-    $.msg($.name, ``, `${message}\nhttps://u.jd.com/2tLVPm2\n\n跳转到app 可查看助力情况`);
+    $.msg($.name, ``, `${message}\nhttps://u.jd.com/2CCAWgy\n\n跳转到app 可查看助力情况`);
     if ($.isNode()){
-      await notify.sendNotify(`${$.name}`, `${message}\n\nhttps://u.jd.com/2tLVPm2\n跳转到app 可查看助力情况`);
+      await notify.sendNotify(`${$.name}`, `${message}\n\nhttps://u.jd.com/2CCAWgy\n跳转到app 可查看助力情况`);
     }
   }
 })()
@@ -322,11 +322,11 @@ function getEid(arr) {
 
 function getUA(){
   $.UA = `jdapp;iPhone;10.2.2;14.3;${randomString(40)};M/5.0;network/wifi;ADID/;model/iPhone12,1;addressid/4199175193;appBuild/167863;jdSupportDarkMode/0;Mozilla/5.0 (iPhone; CPU iPhone OS 14_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1;`
-  rebateCode = '2tLVPm2'
+  rebateCode = '2CCAWgy'
   if($.index != 1){
-    let arr = [rebateCodes,'2tLVPm2']
+    let arr = [rebateCodes,'2CCAWgy']
     rebateCode = arr[Math.floor(Math.random() * arr.length)] || rebateCode
-    if(!rebateCode) rebateCode = '2tLVPm2'
+    if(!rebateCode) rebateCode = '2CCAWgy'
   }
   console.log(rebateCode)
 }
