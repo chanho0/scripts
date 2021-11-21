@@ -6,7 +6,7 @@
 入口复制到jd：
 23.0复制整段话 Http:/JMkI8jjYDXjvI0 Come on~瓜分百万京豆，快加入我的战队吧！￥ZDj2fAU7Ea￥去【椋〣崬】
 */
-const $ = new Env('8.25 组队瓜分京豆 (飞利浦)');
+const $ = new Env('飞利浦自动');
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 let UA = require('./USER_AGENTS.js').USER_AGENT;
 const notify = $.isNode() ? require('./sendNotify') : '';
