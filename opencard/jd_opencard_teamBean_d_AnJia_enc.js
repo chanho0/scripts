@@ -10,7 +10,7 @@ https://lzkjdz-isv.isvjd.com/pool/captain?activityId=e7c37c2548284d1eb7920079fbf
 cron "5 0,5,23 * * *" script-path=x.js,tag=x
 */
 let wait = 1
-const $ = new Env('10.12 组队瓜分京豆 (安佳)');
+const $ = new Env('安佳');
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 let UA = require('./USER_AGENTS.js').USER_AGENT;
 const notify = $.isNode() ? require('./sendNotify') : '';
