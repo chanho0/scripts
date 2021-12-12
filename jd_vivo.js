@@ -25,8 +25,8 @@ let shareList = [];
         $.msg($.name, '【提示】请先获取京东账号一cookie\n直接使用NobyDa的京东签到获取', 'https://bean.m.jd.com/bean/signIndex.action', {"open-url": "https://bean.m.jd.com/bean/signIndex.action"});
         return;
     }
-    $.shareUuid = '20c533dc92e14cc9b657730f21f4050f';
-    shareList = ['20c533dc92e14cc9b657730f21f4050f'];
+    $.shareUuid = '';
+    shareList = ['ee35fa984aeb47aa98c1dbfae90b9548'];
     try{shareList = await getAuthorShareCode('https://raw.githubusercontent.com/lukelucky6/code/main/abc.json');}catch (e) {}
     if(!shareList){
         try{shareList = await getAuthorShareCode('https://cdn.jsdelivr.net/gh/lukelucky6/code@main/abc.json');}catch (e) {}
