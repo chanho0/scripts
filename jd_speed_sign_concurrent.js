@@ -35,7 +35,7 @@ const child_process = require('child_process');
 
     for (let i = 0; i < cookiesArr.length; i++) {
         process.env.JD_COOKIE = cookiesArr[i]
-        const workerProcess = child_process.execFile(process.execPath, ['./jd_speed_sign_c.js'], function (error, stdout, stderr) {
+        const workerProcess = child_process.execFile(process.execPath, ['./chanho0_scripts_jd_speed_sign_c.js'], function (error, stdout, stderr) {
             if (error) {
                 throw error;
             }
