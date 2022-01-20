@@ -118,7 +118,7 @@ let activityCookie =''
       await run();
       if(i == 0 && !$.actorUuid) break
       if($.outFlag || $.activityEnd) break
-	  await $.wait(3456)
+	  //await $.wait(3456)
       
     }
   }
@@ -177,7 +177,7 @@ async function run() {
       return
     }
     await takePostRequest('drawContent');
-    //await $.wait(1000)
+    await $.wait(100)
     $.openList = []
     $.allOpenCard = false
     await takePostRequest('info');
@@ -192,11 +192,11 @@ async function run() {
           flag = true
           $.joinVenderId = o.venderId
           await joinShop()
-          //await $.wait(parseInt(Math.random() * 2000 + 2000, 10))
+          await $.wait(parseInt(Math.random() * 200 + 200, 10))
           await takePostRequest('activityContent');
           await takePostRequest('drawContent');
           await takePostRequest('checkOpenCard');
-          //await $.wait(parseInt(Math.random() * 3000 + 2000, 10))
+          await $.wait(parseInt(Math.random() * 300 + 200, 10))
         }
       }
     }else{
@@ -207,7 +207,7 @@ async function run() {
     if(!$.followShop && !$.outFlag){
       flag = true
       await takePostRequest('followShop');
-      //await $.wait(parseInt(Math.random() * 2000 + 3000, 10))
+      await $.wait(parseInt(Math.random() * 200 + 300, 10))
     }
     $.yaoqing = false
     await takePostRequest('邀请');
@@ -223,10 +223,10 @@ async function run() {
         let goodsArr = []
         if(cleanCart){
           goodsArr = await cleanCart.clean(cookie,'https://jd.smiek.tk/jdcleancatr_21102717','')
-          //await $.wait(parseInt(Math.random() * 1000 + 4000, 10))
+          await $.wait(parseInt(Math.random() * 100 + 400, 10))
         }
         await takePostRequest('addCart');
-        //await $.wait(parseInt(Math.random() * 2000 + 4000, 10))
+        await $.wait(parseInt(Math.random() * 200 + 400, 10))
         if(cleanCart && goodsArr !== false){
           // //await $.wait(parseInt(Math.random() * 1000 + 4000, 10))
           await cleanCart.clean(cookie,'https://jd.smiek.tk/jdcleancatr_21102717',goodsArr || [ ])
@@ -254,11 +254,11 @@ async function run() {
           console.log("抽奖太多次，多余的次数请再执行脚本")
           break
         }
-        //await $.wait(parseInt(Math.random() * 2000 + 2000, 10))
+        await $.wait(parseInt(Math.random() * 200 + 200, 10))
       }
     }else console.log('如需抽奖请设置环境变量[guaopencard_draw109]为"3" 3为次数');
     
-    //await $.wait(parseInt(Math.random() * 1000 + 2000, 10))
+    await $.wait(parseInt(Math.random() * 100 + 200, 10))
     await takePostRequest('getDrawRecordHasCoupon');
     await takePostRequest('getShareRecord');
     if($.outFlag){
@@ -271,16 +271,16 @@ async function run() {
       $.shareUuid = $.actorUuid
       console.log(`后面的号都会助力:${$.shareUuid}`)
     }
-    //await $.wait(parseInt(Math.random() * 1000 + 5000, 10))
-    if(flag) //await $.wait(parseInt(Math.random() * 1000 + 10000, 10))
+    await $.wait(parseInt(Math.random() * 100 + 500, 10))
+    if(flag) await $.wait(parseInt(Math.random() * 100 + 1000, 10))
     if(guaopenwait){
       if($.index != cookiesArr.length){
         console.log(`等待${guaopenwait}秒`)
-        //await $.wait(parseInt(guaopenwait, 10) * 1000)
+        await $.wait(parseInt(guaopenwait, 10) * 100)
       }
     }else{
       if($.index % 3 == 0) console.log('休息1分钟，别被黑ip了\n可持续发展')
-      if($.index % 3 == 0) await $.wait(1)
+      if($.index % 3 == 0) await $.wait(100)
     }
   } catch (e) {
     console.log(e)
@@ -782,7 +782,7 @@ function joinShop() {
   if(!$.joinVenderId) return
   return new Promise(async resolve => {
     $.shopactivityId = ''
-    //await $.wait(1000)
+    await $.wait(100)
     await getshopactivityId()
     let activityId = ``
     if($.shopactivityId) activityId = `,"activityId":${$.shopactivityId}`
