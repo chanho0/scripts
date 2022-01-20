@@ -118,7 +118,7 @@ let activityCookie =''
       await run();
       if(i == 0 && !$.actorUuid) break
       if($.outFlag || $.activityEnd) break
-	  await $.wait(2222)
+	  await $.wait(3456)
       
     }
   }
