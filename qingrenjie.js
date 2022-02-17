@@ -2,7 +2,7 @@ const $ = new Env("伊曲约会妙音");
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 const notify = $.isNode() ? require('./sendNotify') : '';
 let cookiesArr = [], cookie = '', message = '';
-let ownCode = 192afd60a87b432aa51d3af018a13751;
+let ownCode = null;
 let authorCodeList = ['']
 let lnzl=0;
 let lnzlcount=0;
@@ -53,7 +53,7 @@ if ($.isNode()) {
 				lnzlcount++
 				lnzl=0;
 			}
-            $.authorCode = ''
+            $.authorCode = '192afd60a87b432aa51d3af018a13751'
 
             $.authorNum = `${random(1000000, 9999999)}`
             $.randomCode = random(1000000, 9999999)
