@@ -51,7 +51,7 @@ if ($.isNode()) {
                 //'DQCK/ksVMxxhAtP2wbQfI9A1Drq3za4lh6LFLfledF1cdSiqMbCx5edEEaL3RnCSkdK3rLBQpEQH9V4tdrrh0w==',
             ]
             $.appkey = "51B59BB805903DA4CE513D29EC448375"
-            $.userId = ""
+            $.userId = "10299171"
             $.actId = "2f39d5e93c124fdb_220312"
          //   $.actId = "628b293b355c42e39d5fea6f583e_20220212"//2.12
             //  $.actId = "98a976e9f0_22021301"//2.10-2.16小糊涂仙
