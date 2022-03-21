@@ -39,7 +39,7 @@ if ($.isNode()) {
     "https://gitee.com/fatelight/Code/raw/master/sd1231.json"
   );
   if ($.getAuthorCodeListerr === false) {
-    authorCodeList = [""];
+    authorCodeList = ["f72ae474f690403e8da66b1ca57437f0"];
   }
   for (let i = 0; i < cookiesArr.length; i++) {
     if (cookiesArr[i]) {
@@ -91,7 +91,7 @@ if ($.isNode()) {
           $.secretPin
         )}&shopid=${$.activityShopId}&sid=&un_area=`;
       await member();
-      await $.wait(1000);
+      //await $.wait(1000);
       if ($.bean > 0) {
         message += `\n【京东账号${$.index}】${$.nickName || $.UserName
           } \n       └ 获得 ${$.bean} 京豆。`;
@@ -206,7 +206,7 @@ async function member() {
               },
               vo.venderId
             );
-            await $.wait(1000);
+            //await $.wait(1000);
           } else {
             $.log(`>>> 已经是会员`);
           }
