@@ -67,7 +67,7 @@ if ($.isNode()) {
             $.activityShopId = '1000084983'
             $.activityUrl = `https://lzdz1-isv.isvjd.com/dingzhi/dz/openCard/activity/${$.authorNum}?activityId=${$.activityId}&shareUuid=${encodeURIComponent($.authorCode)}&adsource=null&shareuserid4minipg=null&shopid=${$.activityShopId}&lng=00.000000&lat=00.000000&sid=&un_area=`
             await marry();
-            await $.wait(3000)
+            //await $.wait(3000)
             if ($.bean > 0) {
                 message += `\n【京东账号${$.index}】${$.nickName || $.UserName} \n       └ 获得 ${$.bean} 京豆。`
             }
@@ -114,7 +114,7 @@ async function marry() {
                     await task('dz/openCard/followShop', `activityId=${$.activityId}&pin=${encodeURIComponent($.secretPin)}&actorUuid=${encodeURIComponent($.actorUuid)}&taskType=23&taskValue=1000002520`)
                 } else {
                     $.log("    >>>已经关注过了\n")
-                    await $.wait(2000)
+                    //await $.wait(2000)
                     // return
                 }
             } else {
@@ -138,22 +138,22 @@ async function marry() {
                         $.log(`    >>>去加入${vo.name}`)
                         await getShopOpenCardInfo({ "venderId": `${vo.value}`, "channel": "401" }, vo.value)
                         await bindWithVender({ "venderId": `${vo.value}`, "bindByVerifyCodeFlag": 1, "registerExtend": {}, "writeChildFlag": 0, "activityId": $.openCardActivityId, "channel": 401 }, vo.value)
-                        await $.wait(1000)
+                        //await $.wait(1000)
                     }
                     for (const vo of t2TaskList) {
                         $.log(`    >>>${vo.name}`)
                         await getShopOpenCardInfo({ "venderId": `${vo.value}`, "channel": "401" })
                         await bindWithVender({ "venderId": `${vo.value}`, "bindByVerifyCodeFlag": 1, "registerExtend": {}, "writeChildFlag": 0, "activityId": $.openCardActivityId, "channel": 401 }, vo.value)
-                        await $.wait(2000)
+                        //await $.wait(2000)
                     }
                 }
 
                 await task("taskact/openCardcommon/drawContent", `activityId=${$.activityId}&pin=${encodeURIComponent($.secretPin)}`)
-                await $.wait(2000)
+                //await $.wait(2000)
                 await task('dz/openCard/checkOpenCard', `activityId=${$.activityId}&actorUuid=${$.actorUuid}&shareUuid=${$.authorCode}&pin=${encodeURIComponent($.secretPin)}`)
-                await $.wait(2000)
+                //await $.wait(2000)
                 await task("dz/openCard/startDraw", `activityId=${$.activityId}&actorUuid=${$.actorUuid}&type=1&pin=${encodeURIComponent($.secretPin)}`)
-                await $.wait(2000)
+                //await $.wait(2000)
                 await task("dz/openCard/startDraw", `activityId=${$.activityId}&actorUuid=${$.actorUuid}&type=2&pin=${encodeURIComponent($.secretPin)}`)
 
             } else {
