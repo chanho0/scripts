@@ -36,7 +36,7 @@ cron:30 1 3-9/3 4 *
 
 */
 let guaopencard_addSku = "false"
-let guaopencard = "true"
+let guaopencard = "false"
 let guaopenwait = "0"
 process.env.guaopencard126 = true
 
@@ -254,37 +254,37 @@ async function run() {
       }
     }
     $.runFalag = true
-    $.log("浏览店铺: " + $.toShop)
-    if(!$.toShop && !$.outFlag){
-      flag = true
-      let s = 0
-      for(let v of $.toShopList || []){
-        if(s >= 5) break
-        if($.runFalag == false) break
-        if(v.value && v.status === 0){
-          s++
-          $.toShopValue = v.value
-          await takePostRequest('toShop');
-          await $.wait(parseInt(Math.random() * 2000, 10))
-        }
-      }
-    }
+    // $.log("浏览店铺: " + $.toShop)
+    // if(!$.toShop && !$.outFlag){
+    //   flag = true
+    //   let s = 0
+    //   for(let v of $.toShopList || []){
+    //     if(s >= 5) break
+    //     if($.runFalag == false) break
+    //     if(v.value && v.status === 0){
+    //       s++
+    //       $.toShopValue = v.value
+    //       await takePostRequest('toShop');
+    //       await $.wait(parseInt(Math.random() * 2000, 10))
+    //     }
+    //   }
+    // }
     $.runFalag = true
     $.log("浏览商品: " + $.visitSku)
-    if(!$.visitSku && !$.outFlag){
-      flag = true
-      let s = 0
-      for(let v of $.visitSkuList || []){
-        if(s >= 5) break
-        if($.runFalag == false) break
-        if(v.value && v.status === 0){
-          s++
-          $.visitSkuValue = v.value
-          await takePostRequest('visitSku');
-          await $.wait(parseInt(Math.random() * 2000, 10))
-        }
-      }
-    }
+    // if(!$.visitSku && !$.outFlag){
+    //   flag = true
+    //   let s = 0
+    //   for(let v of $.visitSkuList || []){
+    //     if(s >= 5) break
+    //     if($.runFalag == false) break
+    //     if(v.value && v.status === 0){
+    //       s++
+    //       $.visitSkuValue = v.value
+    //       await takePostRequest('visitSku');
+    //       await $.wait(parseInt(Math.random() * 2000, 10))
+    //     }
+    //   }
+    // }
     if(flag){
       await takePostRequest('activityContent');
     }
@@ -310,7 +310,7 @@ async function run() {
       }
     }else{
       if($.index % 3 == 0) console.log('休息1分钟，别被黑ip了\n可持续发展')
-      if($.index % 3 == 0) await $.wait(parseInt(Math.random() * 5000 + 12000, 10))
+      if($.index % 3 == 0) await $.wait(parseInt(Math.random() * 5000 + 20000, 10))
     }
   } catch (e) {
     console.log(e)
