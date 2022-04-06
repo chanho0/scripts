@@ -67,8 +67,11 @@ const JD_API_HOST = 'https://api.m.jd.com/api';
         continue
       }
       await shareCodesFormat();
-      await JD818();
-      await $.wait(1000)
+	  if(i < 3){
+		await JD818();
+		await $.wait(1000);
+	  }
+	  
     }
   }
   for (let i = 0; i < cookiesArr.length; i++) {
