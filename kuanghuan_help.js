@@ -140,36 +140,33 @@ function taskUrl(functionId, body = {}) {
 
 
 function gethelp() {
-  //一个人一天只能助力两次，助力码inviteCode  每天都变
-  const body = {"apiMapping":"/khc/task/getSupport"};
-  const options = taskUrl(body)
-  return new Promise((resolve) => {
-    $.post(options, (err, resp, data) => {
+  return new Promise(resolve => {
+    const body = {"apiMapping":"/khc/task/getSupport"}
+    $.get(taskUrl(body), async (err, resp, data) => {
       try {
         if (err) {
-          console.log(`\n${$.name}: API查询请求失败 ‼️‼️`);
-          console.log(JSON.stringify(err));
+          console.log(`${JSON.stringify(err)}`)
+          console.log(`${$.name} API请求失败，请检查网路重试`)
         } else {
           data = JSON.parse(data);
-          if (data  ) {
-            if (data.code===200) {
-              console.log(`\n\n发起助力 成功： ${data.data}`)
-              $.shareId.push(data.data);
-            } else {
-              console.log(`\n\n发起助力 失败：${data.data}`)
-            }
+          if (data.code === 200) {
+            console.log(`\n\n${$.name}互助码每天都变化,旧的不可继续使用`);
+            $.log(`【京东账号${$.index}（${$.UserName}）的${$.name}好友互助码】${data.data.shareId}\n\n`);
+            $.temp.push(data.data.shareId);
           } else {
-            console.log(`助力异常：${JSON.stringify(data)}`);
+            console.log(`获取邀请码失败：${JSON.stringify(data)}`);
+            if (data.code === 1002) $.blockAccount = true;
           }
         }
       } catch (e) {
-        $.logErr(e, resp);
+        $.logErr(e, resp)
       } finally {
-        resolve();
+        resolve(data);
       }
     })
   })
 }
+
 function dohelp(shareId) {
   //一个人一天只能助力两次，助力码inviteCode  每天都变
   const body = {shareId,"apiMapping":"/khc/task/doSupport"};
