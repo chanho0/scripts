@@ -121,7 +121,7 @@ $.inviteCode  = [];
 
 function taskUrl(functionId, body = {}) {
   return {
-    url: `${JD_API_HOST}?functionId=${functionId}&appid=china-joy&t=${new Date().getTime()+6000}&loginType=2`,
+    url: `${JD_API_HOST}?appid=guardian-starjd&functionId=carnivalcity_jd_prod&body=${JSON.stringify(body)}&t=${Date.now()}&loginType=2`,
     body: `body=${escape(JSON.stringify(body))}`,
     headers: {
       "Host": "api.m.jd.com",
@@ -142,7 +142,7 @@ function taskUrl(functionId, body = {}) {
 function gethelp() {
   //一个人一天只能助力两次，助力码inviteCode  每天都变
   const body = {"apiMapping":"/khc/task/getSupport"};
-  const options = taskUrl("collect_bliss_cards_prod", body)
+  const options = taskUrl(body)
   return new Promise((resolve) => {
     $.post(options, (err, resp, data) => {
       try {
@@ -173,7 +173,7 @@ function gethelp() {
 function dohelp(shareId) {
   //一个人一天只能助力两次，助力码inviteCode  每天都变
   const body = {shareId,"apiMapping":"/khc/task/doSupport"};
-  const options = taskUrl("collect_bliss_cards_prod", body)
+  const options = taskUrl(body)
   return new Promise((resolve) => {
     $.post(options, (err, resp, data) => {
       try {
