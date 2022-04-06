@@ -25,6 +25,7 @@ const notify = $.isNode() ? require('./sendNotify') : '';
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 //IOS等用户直接用NobyDa的jd cookie
 let cookiesArr = [], cookie = '', message = '', allMessage = '';
+helpnum = process.env.helpnum ? process.env.helpnum :'3'
 let isLoginInfo = {}
 if ($.isNode()) {
   Object.keys(jdCookieNode).forEach((item) => {
@@ -45,7 +46,7 @@ const JD_API_HOST = 'https://api.m.jd.com/api';
   $.temp = [];
   $.updatePkActivityIdRes = await getAuthorShareCode('')
   await requireConfig();
-  for (let i = 0; i < cookiesArr.length; i++) {
+  for (let i = 0; i < helpnum; i++) {
     if (cookiesArr[i]) {
       cookie = cookiesArr[i];
       $.UserName = decodeURIComponent(cookie.match(/pt_pin=([^; ]+)(?=;?)/) && cookie.match(/pt_pin=([^; ]+)(?=;?)/)[1])
@@ -66,11 +67,11 @@ const JD_API_HOST = 'https://api.m.jd.com/api';
         }
         continue
       }
-	  if(i < 3){
-		await shareCodesFormat();
-		await JD818();
-		await $.wait(1000);
-	  }
+
+	  await shareCodesFormat();
+	  await JD818();
+	  await $.wait(1000);
+
 	  
     }
   }
@@ -79,7 +80,7 @@ const JD_API_HOST = 'https://api.m.jd.com/api';
       cookie = cookiesArr[i];
       $.canHelp = true;//能否助力
       $.UserName = decodeURIComponent(cookie.match(/pt_pin=([^; ]+)(?=;?)/) && cookie.match(/pt_pin=([^; ]+)(?=;?)/)[1])
-      if (!isLoginInfo[$.UserName]) continue
+      //if (!isLoginInfo[$.UserName]) continue
       if ((cookiesArr && cookiesArr.length >= 1) && ($.temp && $.temp.length)) {
         console.log(`\n先自己账号内部相互邀请助力`);
         for (let j = 0; j < $.temp.length && $.canHelp; j++) {
