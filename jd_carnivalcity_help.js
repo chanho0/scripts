@@ -25,7 +25,6 @@ const notify = $.isNode() ? require('./sendNotify') : '';
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 //IOS等用户直接用NobyDa的jd cookie
 let cookiesArr = [], cookie = '', message = '', allMessage = '';
-let helpnum = process.env.helpnum ? process.env.helpnum : '3';
 let isLoginInfo = {}
 if ($.isNode()) {
   Object.keys(jdCookieNode).forEach((item) => {
@@ -46,7 +45,7 @@ const JD_API_HOST = 'https://api.m.jd.com/api';
   $.temp = [];
   $.updatePkActivityIdRes = await getAuthorShareCode('')
   await requireConfig();
-  for (let i = 0; i < helpnum; i++) {
+  for (let i = 0; i < cookiesArr.length; i++) {
     if (cookiesArr[i]) {
       cookie = cookiesArr[i];
       $.UserName = decodeURIComponent(cookie.match(/pt_pin=([^; ]+)(?=;?)/) && cookie.match(/pt_pin=([^; ]+)(?=;?)/)[1])
