@@ -66,8 +66,8 @@ const JD_API_HOST = 'https://api.m.jd.com/api';
         }
         continue
       }
-      await shareCodesFormat();
 	  if(i < 3){
+		await shareCodesFormat();
 		await JD818();
 		await $.wait(1000);
 	  }
