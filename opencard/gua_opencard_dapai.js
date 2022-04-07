@@ -109,7 +109,7 @@ let activityCookie =''
    $.actId = '989b5155a5ab4c1ca705_22040501'
   $.MixNicks = ''
   //$.inviteNick = 'Xv1dl4pC69U/jEbum78udF4tLNYA4seuA67MOIYQxEk3Vl9+AVo4NF+tgyeIc6A6kdK3rLBQpEQH9V4tdrrh0w=='
-  $.inviteNick = 'DQCK/ksVMxxhAtP2wbQfI14tLNYA4seuA67MOIYQxEk3Vl9+AVo4NF+tgyeIc6A6kdK3rLBQpEQH9V4tdrrh0w=='
+  $.inviteNick = 'zBXxG/WOIr/KOGPKp26I4+2eeeAAy+Z4dS9uCTK4WDbpzoLrW7NWpeN+ekvNaPF4'
   console.log('TT最大最帅！！！')
 //  console.log(`活动地址:https://3.cn/104c6-0Gl`)
   for (let i = 0; i < cookiesArr.length; i++) {
