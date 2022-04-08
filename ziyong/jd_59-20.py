@@ -1,3 +1,4 @@
+#cron:58 59 17 * * *
 from chanho0_scripts_jdapi import JDApi
 import json
 import time
