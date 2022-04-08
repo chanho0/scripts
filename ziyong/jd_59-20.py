@@ -1,6 +1,7 @@
 from chanho0_scripts_jdapi import JDApi
 import json
 import time
+import os
 import requests
 from multiprocessing import Process
 
@@ -23,7 +24,8 @@ def run(ck):
 
 def main():
     # 下面填ck
-    ck=['']
+    #ck=['']\
+    ck=os.environ['JD_COOKIE'].split('&')
     cks=[]
     for i in range(len(ck)):
         cks.append("cs_"+str(i))
