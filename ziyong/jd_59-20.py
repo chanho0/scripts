@@ -1,4 +1,4 @@
-from jdapi import JDApi
+from chanho0_scripts_jdapi import JDApi
 import json
 import time
 import requests
