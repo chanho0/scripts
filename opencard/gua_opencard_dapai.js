@@ -6,6 +6,7 @@ let guaopencard_addSku = "true"
 let guaopencard = "true"
 let guaopenwait = "0"
 let guaopencard_draw = "20"
+let GithubProxyUrl = process.env.GithubProxyUrl ? process.env.GithubProxyUrl : ''
 
 const $ = new Env('大牌dapai');
 var request = require('request');
@@ -22,6 +23,9 @@ if($.isNode()){
   }
 }
 
+let cloud = getactid()
+let h5st = cloud[0]
+let actid = cloud[1]
 
 
 //IOS等用户直接用NobyDa的jd cookie
@@ -69,9 +73,6 @@ let activityCookie =''
     return;
   }
   // return
-  let cloud = getactid()
-  let h5st = cloud[0]
-  let actid = cloud[1]
   $.appkey = '51B59BB805903DA4CE513D29EC448375'
   $.userId = '10299171'
  //$.actId = '23d1937cb5c747409e651d6eab_788'
@@ -602,7 +603,7 @@ function getshopactivityId() {
 async function getactid(){
 var options = {
   'method': 'GET',
-  'url': 'https://raw.githubusercontent.com/Roeel/yangmao/main/dapai.json',
+  'url': `${GithubProxyUrl}https://raw.githubusercontent.com/Roeel/yangmao/main/dapai.json`
 
 };
 await request(options, function (error, response) {
