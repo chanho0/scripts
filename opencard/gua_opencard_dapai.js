@@ -606,10 +606,10 @@ var options = {
 await request(options, function (error, response) {
   if (error) throw new Error(error);
   let resp = JSON.parse(response.body);
-  var h5st = resp.h5st
-  var actid = resp.actid
+  const h5st = resp.h5st
+  const actid = resp.actid
   console.log(`当前参数：actid:${actid}\nh5st:${h5st}`);
-
+  return actid,h5st
 });
 }
 
