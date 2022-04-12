@@ -69,7 +69,7 @@ let activityCookie =''
     return;
   }
   // return
-  getactid()
+  await getactid()
   $.appkey = '51B59BB805903DA4CE513D29EC448375'
   $.userId = '10299171'
  //$.actId = '23d1937cb5c747409e651d6eab_788'
