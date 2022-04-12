@@ -606,8 +606,8 @@ var options = {
 await request(options, function (error, response) {
   if (error) throw new Error(error);
   let resp = JSON.parse(response.body);
-  let h5st = resp.h5st
-  let actid = resp.actid
+  var h5st = resp.h5st
+  var actid = resp.actid
   console.log(`当前参数：actid:${actid}\nh5st:${h5st}`);
 
 });
