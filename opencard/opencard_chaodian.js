@@ -1,4 +1,5 @@
 /**
+cron:1 1 1 1 *
  瓜分千万京豆 免费抽大奖
 
  https://lzdz1-isv.isvjcloud.com/dingzhi/shop/league/activity/6758593?activityId=dz220107100001616201shop&shareUuid=1d0d5fd0a72f4f9cb43f3c0ee722c19e
