@@ -182,11 +182,11 @@ async function run() {
         $.openCard = false
         $.joinVenderId = o.userId
         await takePostRequest('mission');
-        await $.wait(parseInt(Math.random() * 3000 + 1000, 10))
+        await $.wait(parseInt(Math.random() * 2000 + 1000, 10))
         if($.openCard == true){
           await joinShop()
           await takePostRequest('activity_load');
-          await $.wait(parseInt(Math.random() * 3000 + 1000, 10))
+          await $.wait(parseInt(Math.random() * 2000 + 1000, 10))
           // break
         }
         $.joinVenderId = ''
@@ -244,7 +244,7 @@ async function run() {
       $.inviteNick = $.MixNick
       console.log(`后面的号都会助力:${$.inviteNick}`)
     }
-    await $.wait(parseInt(Math.random() * 1000 + 3000, 10))
+    await $.wait(parseInt(Math.random() * 1000 + 1000, 10))
     if(flag) await $.wait(parseInt(Math.random() * 1000 + 10000, 10))
     if(guaopenwait){
       if($.index != cookiesArr.length){
@@ -268,7 +268,7 @@ function joinShop() {
     let activityId = ``
     if($.shopactivityId) activityId = `,"activityId":${$.shopactivityId}`
     const options = {
-      url: `https://api.m.jd.com/client.action?appid=jd_shop_member&functionId=bindWithVender&body={"venderId":"${$.joinVenderId}","shopId":"${$.joinVenderId}","bindByVerifyCodeFlag":1,"registerExtend":{},"writeChildFlag":0${activityId},"channel":401}&client=H5&clientVersion=9.2.0&uuid=88888&h5st=20220316103927741%3B4917820034065113%3B8adfb%3Btk02wac471c5018nzfjQ07QMnzYF7aGYN8INh7pOROYvT9xfhNG4WoAlspfC9wo4vdX6Q79yOggjkDKhiadrPg2z%2B9k%2B%3B034fb6c85703cf98cb40dfa9ecc91fe0c5aefbd69d361721c900544597f535df%3B3.0%3B1647398367741`,
+      url: `https://api.m.jd.com/client.action?appid=jd_shop_member&functionId=bindWithVender&body={"venderId":"${$.joinVenderId}","shopId":"${$.joinVenderId}","bindByVerifyCodeFlag":1,"registerExtend":{},"writeChildFlag":0${activityId},"channel":401}&client=H5&clientVersion=9.2.0&uuid=88888&h5st=20220330134935883;8133837561928226;ef79a;tk02wb12e1ba918nbrqilqPYkvFuWCauvb88ASw56FeAlo47mHB62ZQB2jqR5IKkZUY3SRfC8H9+RgMDjnrbuWeDAIBf;d80f5d84a8e1d27e4c1acb3c559c02a95d53fc8188a115360d1a359fe620d821;3.0;1648619375883`,
       headers: {
         'Content-Type': 'text/plain; Charset=UTF-8',
         'Origin': 'https://api.m.jd.com',
