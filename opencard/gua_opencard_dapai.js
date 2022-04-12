@@ -43,6 +43,7 @@ let guaopencard_addSku = "true"
 let guaopencard = "true"
 let guaopenwait = "0"
 let guaopencard_draw = "20"
+let h5st = '20220330134935883;8133837561928226;ef79a;tk02wb12e1ba918nbrqilqPYkvFuWCauvb88ASw56FeAlo47mHB62ZQB2jqR5IKkZUY3SRfC8H9+RgMDjnrbuWeDAIBf;d80f5d84a8e1d27e4c1acb3c559c02a95d53fc8188a115360d1a359fe620d821;3.0;1648619375883'
 
 const $ = new Env('1.8～1.15 联合开卡-99');
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
@@ -268,7 +269,7 @@ function joinShop() {
     let activityId = ``
     if($.shopactivityId) activityId = `,"activityId":${$.shopactivityId}`
     const options = {
-      url: `https://api.m.jd.com/client.action?appid=jd_shop_member&functionId=bindWithVender&body={"venderId":"${$.joinVenderId}","shopId":"${$.joinVenderId}","bindByVerifyCodeFlag":1,"registerExtend":{},"writeChildFlag":0${activityId},"channel":401}&client=H5&clientVersion=9.2.0&uuid=88888&h5st=20220330134935883;8133837561928226;ef79a;tk02wb12e1ba918nbrqilqPYkvFuWCauvb88ASw56FeAlo47mHB62ZQB2jqR5IKkZUY3SRfC8H9+RgMDjnrbuWeDAIBf;d80f5d84a8e1d27e4c1acb3c559c02a95d53fc8188a115360d1a359fe620d821;3.0;1648619375883`,
+      url: `https://api.m.jd.com/client.action?appid=jd_shop_member&functionId=bindWithVender&body={"venderId":"${$.joinVenderId}","shopId":"${$.joinVenderId}","bindByVerifyCodeFlag":1,"registerExtend":{},"writeChildFlag":0${activityId},"channel":401}&client=H5&clientVersion=9.2.0&uuid=88888&h5st=${h5st}`,
       headers: {
         'Content-Type': 'text/plain; Charset=UTF-8',
         'Origin': 'https://api.m.jd.com',
