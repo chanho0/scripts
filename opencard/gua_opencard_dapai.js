@@ -1,51 +1,14 @@
 /*
-1.8～1.15 联合开卡-99 [gua_opencard99.js]
-新增开卡脚本
-一次性脚本
-
-1.邀请一人20豆(有可能没有豆
-2.开12张 成功开1张 可能获得5京豆
-  全部开完获得1次抽奖
-3.关注10京豆 获得1次抽奖
-4.加购5京豆 获得1次抽奖(默认不加购 如需加购请设置环境变量[guaopencard_addSku99]为"true"
-5.抽奖 (默认不抽奖 如需抽奖请设置环境变量[guaopencard_draw99]为"3"
-填写要抽奖的次数 不足已自身次数为准
-guaopencard_draw99="3"
-填非数字会全都抽奖
-
-第一个账号助力作者 其他依次助力CK1
-第一个CK失效会退出脚本
-
-默认脚本不执行
-如需执行脚本请设置环境变量
-guaopencard99="true"
-每个账号之间延迟 100=延迟100秒 0=延迟0秒会使用每3个账号延迟60秒
-guaopenwait_All 所有
-guaopenwait99="0"
-
-
-All变量适用
-————————————————
-入口：[ 1.8～1.15 联合开卡-99 (https://3.cn/104c6-0Gl)]
-
-请求太频繁会被黑ip
-过10分钟再执行
-
-
-cron:30 3 8-15/3 1 *
-============Quantumultx===============
-[task_local]
-#1.8～1.15 联合开卡-99
-30 3 8-15/3 1 * https://raw.githubusercontent.com/smiek2121/scripts/master/gua_opencard99.js, tag=1.8～1.15 联合开卡-99, enabled=true
-
+大牌智能测试版
+tt码
 */
 let guaopencard_addSku = "true"
 let guaopencard = "true"
 let guaopenwait = "0"
 let guaopencard_draw = "20"
-let h5st = '20220330134935883;8133837561928226;ef79a;tk02wb12e1ba918nbrqilqPYkvFuWCauvb88ASw56FeAlo47mHB62ZQB2jqR5IKkZUY3SRfC8H9+RgMDjnrbuWeDAIBf;d80f5d84a8e1d27e4c1acb3c559c02a95d53fc8188a115360d1a359fe620d821;3.0;1648619375883'
 
-const $ = new Env('1.8～1.15 联合开卡-99');
+const $ = new Env('大牌dapai');
+var request = require('request');
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 const notify = $.isNode() ? require('./sendNotify') : '';
 let cleanCart = ''
@@ -58,6 +21,9 @@ if($.isNode()){
   }catch(e){
   }
 }
+
+getactid()
+
 //IOS等用户直接用NobyDa的jd cookie
 let cookiesArr = [],
     cookie = '';
@@ -107,7 +73,8 @@ let activityCookie =''
   $.userId = '10299171'
  //$.actId = '23d1937cb5c747409e651d6eab_788'
   // $.actId = '76364a8cc2b84e05b303_22032002'
-   $.actId = 'bbf1686bd7f64e4f94d_22040801'
+   //$.actId = 'bbf1686bd7f64e4f94d_22040801'
+   $.actId = actid
   $.MixNicks = ''
   //$.inviteNick = 'Xv1dl4pC69U/jEbum78udF4tLNYA4seuA67MOIYQxEk3Vl9+AVo4NF+tgyeIc6A6kdK3rLBQpEQH9V4tdrrh0w=='
   $.inviteNick = 'zBXxG/WOIr/KOGPKp26I4+2eeeAAy+Z4dS9uCTK4WDbpzoLrW7NWpeN+ekvNaPF4'
@@ -627,6 +594,22 @@ function getshopactivityId() {
       }
     })
   })
+}
+
+async function getactid(){
+var options = {
+  'method': 'GET',
+  'url': 'https://raw.githubusercontent.com/Roeel/yangmao/main/dapai.json',
+
+};
+await request(options, function (error, response) {
+  if (error) throw new Error(error);
+  let resp = JSON.parse(response.body);
+  let h5st = resp.h5st
+  let actid = resp.actid
+  console.log(`当前参数：actid:${actid}\nh5st:${h5st}`);
+
+});
 }
 
 // prettier-ignore
