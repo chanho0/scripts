@@ -23,9 +23,7 @@ if($.isNode()){
   }
 }
 
-let cloud = getactid()
-let h5st = cloud[0]
-let actid = cloud[1]
+
 
 
 //IOS等用户直接用NobyDa的jd cookie
@@ -72,6 +70,9 @@ let activityCookie =''
     });
     return;
   }
+  let cloud = await getactid()
+  let h5st = cloud[0]
+  let actid = cloud[1]
   // return
   $.appkey = '51B59BB805903DA4CE513D29EC448375'
   $.userId = '10299171'
