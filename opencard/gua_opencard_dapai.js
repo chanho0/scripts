@@ -71,8 +71,8 @@ let activityCookie =''
     return;
   }
   let cloud = await getactid()
-  let h5st = cloud[0]
-  let actid = cloud[1]
+  let h5st = cloud[h5st]
+  let actid = cloud[actid]
   // return
   $.appkey = '51B59BB805903DA4CE513D29EC448375'
   $.userId = '10299171'
@@ -601,20 +601,13 @@ function getshopactivityId() {
   })
 }
 
-async function getactid(){
-var options = {
-  'method': 'GET',
-  'url': `${GithubProxyUrl}https://raw.githubusercontent.com/Roeel/yangmao/main/dapai.json`
-
-};
-await request(options, function (error, response) {
-  if (error) throw new Error(error);
-  let resp = JSON.parse(response.body);
-  const h5st = resp.h5st
-  const actid = resp.actid
-  console.log(`当前参数：actid:${actid}\nh5st:${h5st}`);
-  return actid,h5st
-});
+async function getactid()  {
+        const response = await got(`${GithubProxyUrl}https://raw.githubusercontent.com/Roeel/yangmao/main/dapai.json`,{responseType: 'json'});
+        const resp = response.body
+        let h5st = resp.h5st
+        let actid = resp.actid
+        console.log(`*****当前参数*****\nactid：${actid}\nh5st：${h5st}\n*********`);
+        return resp
 }
 
 // prettier-ignore
