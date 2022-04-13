@@ -9,7 +9,7 @@ let guaopencard_draw = "20"
 let GithubProxyUrl = process.env.GithubProxyUrl ? process.env.GithubProxyUrl : ''
 
 const $ = new Env('大牌dapai');
-var request = require('request');
+var got = require('got');
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 const notify = $.isNode() ? require('./sendNotify') : '';
 let cleanCart = ''
