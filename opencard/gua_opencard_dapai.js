@@ -71,8 +71,8 @@ let activityCookie =''
     return;
   }
   let cloud = await getactid()
-  let h5st = cloud[h5st]
-  let actid = cloud[actid]
+  let h5st = cloud.h5st
+  let actid = cloud.actid
   // return
   $.appkey = '51B59BB805903DA4CE513D29EC448375'
   $.userId = '10299171'
