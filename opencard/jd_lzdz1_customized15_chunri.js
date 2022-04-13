@@ -67,7 +67,7 @@ if ($.isNode()) {
             $.activityShopId = '1000102789'
             $.activityUrl = `https://lzdz1-isv.isvjcloud.com/dingzhi/customized/common/activity/${$.authorNum}?activityId=${$.activityId}&shareUuid=${encodeURIComponent($.authorCode)}&adsource=GG&shareuserid4minipg=${encodeURIComponent($.secretPin)}&shopid=undefined&sid=&un_area=`
             await member();
-            // await $.wait(5000)
+            // //await $.wait(5000)
             if ($.bean > 0) {
                 message += `\n【京东账号${$.index}】${$.nickName || $.UserName} \n       └ 获得 ${$.bean} 京豆。`
             }
@@ -118,7 +118,7 @@ async function member() {
                     if (vo.status === 0) {
                         await getShopOpenCardInfo({ "venderId": `${vo.venderId}`, "channel": "401" }, vo.venderId)
                         await bindWithVender({ "venderId": `${vo.venderId}`, "bindByVerifyCodeFlag": 1, "registerExtend": {}, "writeChildFlag": 0, "activityId": $.openCardActivityId, "channel": 401 }, vo.venderId)
-                        await $.wait(1000)
+                        //await $.wait(1000)
                     } else {
                         $.log(`>>> 已经是会员`)
                     }
@@ -139,12 +139,12 @@ async function member() {
 
             // await task('linkgame/task/info', `pin=${encodeURIComponent($.secretPin)}&activityId=${$.activityId}`)
             console.log('任务 -> ')
-            await $.wait(2000)
+            //await $.wait(2000)
             await task('opencard/addCart', `activityId=${$.activityId}&pin=${encodeURIComponent($.secretPin)}`);
-            // await $.wait(2000)
+            // //await $.wait(2000)
             // await task('linkgame/sendAllCoupon', `activityId=${$.activityId}&pin=${encodeURIComponent($.secretPin)}`);
             console.log('抽奖 -> ')
-            await $.wait(2000)
+            //await $.wait(2000)
             await task('opencard/draw', `activityId=${$.activityId}&actorUuid=${$.actorUuid}&pin=${encodeURIComponent($.secretPin)}`);
         }
     }
