@@ -1,7 +1,7 @@
 /*
 店铺签到，各类店铺签到，有新的店铺直接添加token即可 多个token请用&隔开 变量名称:DPQDTK
 
-cron "15 2,14 * * *" https://raw.githubusercontent.com/FengYun27/YunFeng_Repo/main/jd_dpqd.js, tag=店铺签到, enabled=true
+cron "0 0,23 * * *" https://raw.githubusercontent.com/FengYun27/YunFeng_Repo/main/jd_dpqd.js, tag=店铺签到, enabled=true
 */
 const $ = new Env('店铺签到_windfgg修改版');
 const notify = $.isNode() ? require('./sendNotify') : '';
