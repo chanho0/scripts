@@ -17,8 +17,8 @@ cron "40 0,2 * * *" script-path=https://raw.githubusercontent.com/KingRan/JDJB/m
 ============小火箭=========
 众筹许愿池 = type=cron,script-path=https://raw.githubusercontent.com/KingRan/JDJB/main/jd_wish.js, cronexpr="40 0,2 * * *", timeout=3600, enable=true
  */
-process.env.wish_appIdArrList="1EFZWxKqP@1EFRWxKuG@1FFVQyqw@1E1xZy6s"                                                                                   
-process.env.wish_appNameArrList="新品来袭@许愿抽好礼@1111点心动@PLUS生活特权"
+process.env.wish_appIdArrList=""                                                                                   
+process.env.wish_appNameArrList=""
 const $ = new Env('众筹许愿池');
 const notify = $.isNode() ? require('./sendNotify') : '';
 //Node.js用户请在jdCookie.js处填写京东ck;
@@ -27,8 +27,8 @@ let message = '', allMessage = '';
 //IOS等用户直接用NobyDa的jd cookie
 let cookiesArr = [], cookie = '';
 const JD_API_HOST = 'https://api.m.jd.com/client.action';
-let appIdArr = ['1EFZWxKqP','1FFVQyqw','1EFRQwA','1EFRWxKuG', '1E1xZy6s'];
-let appNameArr = ['新品来袭','1111点心动','疯狂砸金蛋','许愿抽好礼', 'PLUS生活特权'];
+let appIdArr = ['1EFBTxa6H', '1FFVQyqw', '1EFRWxKuG', '1E1xZy6s'];
+let appNameArr = ['森林历险记', '1111点心动', '许愿抽好礼', 'PLUS生活特权'];
 let appId, appName;
 $.shareCode = [];
 if ($.isNode()) {
