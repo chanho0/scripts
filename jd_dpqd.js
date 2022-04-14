@@ -3,7 +3,7 @@
 
 cron "0 0,23 * * *" https://raw.githubusercontent.com/FengYun27/YunFeng_Repo/main/jd_dpqd.js, tag=店铺签到, enabled=true
 */
-const $ = new Env('店铺签到_windfgg修改版');
+const $ = new Env('店铺签到');
 const notify = $.isNode() ? require('./sendNotify') : '';
 //Node.js用户请在jdCookie.js处填写京东ck;
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
