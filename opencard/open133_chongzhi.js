@@ -106,9 +106,9 @@ let nowTime = new Date().getTime() + new Date().getTimezoneOffset()*60*1000 + 8*
     return;
   }
   $.activityId = "dzuniongame2022c8e0904b0509d0"
-  $.shareUuid = ""
+  $.shareUuid = "c0d7d5d9bb3a4451b3888f1e7b9996e0"
   console.log(`入口:\nhttps://lzdz1-isv.isvjcloud.com/dingzhi/customized/common/activity?activityId=${$.activityId}&shareUuid=${$.shareUuid}`)
-  let shareUuidArr = [$.shareUuid,"e68e2446f25342dcb122b0f3c6bcb7a3","aadb9972af5542acb1f7731d5879cd32","201c38750ded4e96ac87e83c86950e38","a42d7d8e546f4773bf6796541f1b3924","2c4369d89f6c47d19d32705fe503e122","8f45f8d891244e6aaa21c60ba461ceac","3141ffa43cb1427482e47ec142d2c896","d1544426656a4a1a8a2521d21b16bef2","34b0db446e604047af265599a0a80cd8"]
+  let shareUuidArr = [$.shareUuid]
   let s = Math.floor((Math.random()*10))
   let n = 0
   if(s >= 1 && s<= 6) n = Math.floor((Math.random()*shareUuidArr.length))
