@@ -79,7 +79,7 @@ function info() {
     return new Promise(async (resolve) => {
 
                 let options = {
-    url: `https://api.m.jd.com/?functionId=redEnvelopeInteractHome&body={"linkId":"PFbUR7wtwUcQ860Sn8WRfw"}&t=1626358531348&appid=activities_platform&clientVersion=3.5.6`,
+    url: `https://api.m.jd.com/?functionId=redEnvelopeInteractHome&body={"linkId":"u_2EYfsxu0skdtZ6gbRjBQ"}&t=1626358531348&appid=activities_platform&clientVersion=3.5.6`,
 
    
 headers: {
