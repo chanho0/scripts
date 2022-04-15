@@ -44,7 +44,7 @@ message = ""
                 $.prize = 0
                 $.Hb = 0
                 $.drawresult = "";
-                $.linkid = "YhCkrVusBVa_O2K-7xE6hA"
+                $.linkid = "WMDf1PTHmh8MYBpD97sieQ"
                 $.message = `【京东账号${$.index}】${$.UserName}\n`
                 console.log(`\n******开始【京东账号${$.index}】${$.nickName || $.UserName}*********\n`);
                 if (!$.isLogin) {
