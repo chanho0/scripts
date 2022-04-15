@@ -79,7 +79,7 @@ function helpme() {
     return new Promise(async (resolve) => {
 
                 let options = {
-    url: `https://api.m.jd.com/?functionId=openRedEnvelopeInteract&body={"linkId":"PFbUR7wtwUcQ860Sn8WRfw","redEnvelopeId":"${redEnvelopeId}","inviter":"${inviter}","helpType":"1"}&t=1626363029817&appid=activities_platform&clientVersion=3.5.0`,
+    url: `https://api.m.jd.com/?functionId=openRedEnvelopeInteract&body={"linkId":"Eu7-E0CUzqYyhZJo9d3YkQ","redEnvelopeId":"${redEnvelopeId}","inviter":"${inviter}","helpType":"1"}&t=1626363029817&appid=activities_platform&clientVersion=3.5.0`,
 
 headers: {
 "Origin": "https://618redpacket.jd.com",
@@ -124,7 +124,7 @@ headers: {
     return new Promise(async (resolve) => {
 
                 let options = {
-    url: `https://api.m.jd.com/?functionId=openRedEnvelopeInteract&body={"linkId":"PFbUR7wtwUcQ860Sn8WRfw","redEnvelopeId":"${redEnvelopeId}","inviter":"${inviter}","helpType":"2"}&t=1626363029817&appid=activities_platform&clientVersion=3.5.0`,
+    url: `https://api.m.jd.com/?functionId=openRedEnvelopeInteract&body={"linkId":"Eu7-E0CUzqYyhZJo9d3YkQ","redEnvelopeId":"${redEnvelopeId}","inviter":"${inviter}","helpType":"2"}&t=1626363029817&appid=activities_platform&clientVersion=3.5.0`,
 
     
 headers: {
