@@ -1,7 +1,5 @@
 /*
 我的新家 超级配
-
-https://lzdz1-isv.isvjcloud.com/dingzhi/dz/openCard/activity?activityId=dz2021101420000sjleowq&shareUuid=d259bceb218e40af9490693e8f48a370
 */
 const $ = new Env("我的新家 超级配");
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
@@ -27,6 +25,13 @@ if ($.isNode()) {
         $.msg($.name, '【提示】请先获取京东账号一cookie\n直接使用NobyDa的京东签到获取', 'https://bean.m.jd.com/bean/signIndex.action', { "open-url": "https://bean.m.jd.com/bean/signIndex.action" });
         return;
     }
+    
+    // authorCodeList = await getAuthorCodeList('https://gitee.com/fatelight/dongge/raw/master/dongge/lzdz1_dapai.json')
+    // if(authorCodeList === '404: Not Found'){
+    //     authorCodeList = [
+    //         'd259bceb218e40af9490693e8f48a370',
+    //     ]
+    // }
 
     for (let i = 0; i < cookiesArr.length; i++) {
         if (cookiesArr[i]) {
@@ -50,29 +55,29 @@ if ($.isNode()) {
             $.ADID = getUUID('xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx', 1);
             $.UUID = getUUID('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx');
             authorCodeList = [
-                'c52478883421415686ac945e1682bd86'
+                ''
             ]
             // $.authorCode = authorCodeList[random(0, authorCodeList.length)]
             $.authorCode = ownCode ? ownCode : authorCodeList[random(0, authorCodeList.length)]
             $.authorNum = `${random(1000000, 9999999)}`
             $.randomCode = random(1000000, 9999999)
-            $.activityId = 'd1d801f6b58c49279abd443958d46eb4'
-            $.activityShopId = '1000365883'
+            $.activityId = 'dz5000640649efb279e6a76a111238'
+            $.activityShopId = '1000003005'
             $.activityUrl = `https://lzdz1-isv.isvjd.com/dingzhi/dz/openCard/activity/${$.authorNum}?activityId=${$.activityId}&shareUuid=${encodeURIComponent($.authorCode)}&adsource=null&shareuserid4minipg=null&shopid=${$.activityShopId}&lng=00.000000&lat=00.000000&sid=&un_area=`
             await marry();
-            //await $.wait(2000)
+            await $.wait(1000)
             if ($.bean > 0) {
                 message += `\n【京东账号${$.index}】${$.nickName || $.UserName} \n       └ 获得 ${$.bean} 京豆。`
             }
         }
     }
-    if (message !== '') {
-        if ($.isNode()) {
-            await notify.sendNotify($.name, message, '', `\n`);
-        } else {
-            $.msg($.name, '有点儿收获', message);
-        }
-    }
+    // if (message !== '') {
+    //     if ($.isNode()) {
+    //         await notify.sendNotify($.name, message, '', `\n`);
+    //     } else {
+    //         $.msg($.name, '有点儿收获', message);
+    //     }
+    // }
 })()
     .catch((e) => {
         $.log('', `❌ ${$.name}, 失败! 原因: ${e}!`, '')
@@ -107,7 +112,7 @@ async function marry() {
                     await task('dz/openCard/followShop', `activityId=${$.activityId}&pin=${encodeURIComponent($.secretPin)}&actorUuid=${encodeURIComponent($.actorUuid)}&taskType=23&taskValue=1000002520`)
                 } else {
                     $.log("    >>>已经关注过了\n")
-                    // //await $.wait(2000)
+                    await $.wait(2000)
                     // return
                 }
             } else {
@@ -127,22 +132,22 @@ async function marry() {
                         $.log(`    >>>去加入${vo.name}`)
                         await getShopOpenCardInfo({ "venderId": `${vo.value}`, "channel": "401" }, vo.value)
                         await bindWithVender({ "venderId": `${vo.value}`, "bindByVerifyCodeFlag": 1, "registerExtend": {}, "writeChildFlag": 0, "activityId": $.openCardActivityId, "channel": 401 }, vo.value)
-                        //await $.wait(1500)
+                        await $.wait(500)
                     }
                     for (const vo of t2TaskList) {
                         $.log(`    >>>${vo.name}`)
                         await getShopOpenCardInfo({ "venderId": `${vo.value}`, "channel": "401" })
                         await bindWithVender({ "venderId": `${vo.value}`, "bindByVerifyCodeFlag": 1, "registerExtend": {}, "writeChildFlag": 0, "activityId": $.openCardActivityId, "channel": 401 }, vo.value)
-                        //await $.wait(1500)
+                        await $.wait(500)
                     }
                 }
 
                 await task("taskact/openCardcommon/drawContent", `activityId=${$.activityId}&pin=${encodeURIComponent($.secretPin)}`)
-                //await $.wait(1500)
+                await $.wait(1000)
                 await task('dz/openCard/checkOpenCard', `activityId=${$.activityId}&actorUuid=${$.actorUuid}&shareUuid=${$.authorCode}&pin=${encodeURIComponent($.secretPin)}`)
-                // //await $.wait(2000)
+                // await $.wait(2000)
                 // await task("dz/openCard/startDraw", `activityId=${$.activityId}&actorUuid=${$.actorUuid}&type=1&pin=${encodeURIComponent($.secretPin)}`)
-                // //await $.wait(2000)
+                // await $.wait(2000)
                 // await task("dz/openCard/startDraw", `activityId=${$.activityId}&actorUuid=${$.actorUuid}&type=2&pin=${encodeURIComponent($.secretPin)}`)
 
             } else {
@@ -246,7 +251,6 @@ function task(function_id, body, isCommon = 0, own = 0) {
         })
     })
 }
-
 function taskUrl(function_id, body, isCommon) {
     return {
         url: isCommon ? `https://lzdz1-isv.isvjd.com/${function_id}` : `https://lzdz1-isv.isvjd.com/dingzhi/${function_id}`,
